@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import {retry} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +13,4 @@ export class ThemoviedbService {
         retry(1)
       )
   }
-
-
-
-
 }
