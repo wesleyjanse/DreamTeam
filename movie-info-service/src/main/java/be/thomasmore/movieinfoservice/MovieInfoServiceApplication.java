@@ -1,13 +1,13 @@
-package be.thomasmore.MyMovieDbBackend;
+package be.thomasmore.movieinfoservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MyMovieDbBackendApplication {
+public class MovieInfoServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MyMovieDbBackendApplication.class, args);
+		SpringApplication.run(MovieInfoServiceApplication.class, args);
 	}
 
 }
