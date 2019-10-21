@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyMovieDbBackend.iml" filepath="$PROJECT_DIR$/MyMovieDbBackend.iml" />
-    </modules>
-  </component>
-</project>
