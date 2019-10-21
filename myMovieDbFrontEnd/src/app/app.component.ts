@@ -7,10 +7,14 @@ import {ThemoviedbService} from "./themoviedb.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'myMovieDbFrontEnd';
+  title = 'My Movie Database';
   movie = undefined;
+
   constructor(private theMovieDbService: ThemoviedbService) {
     this.theMovieDbService.find('tt0110912')
-      .subscribe(res => {this.movie = res;});
+      .subscribe(res => {
+        this.movie = res;
+        console.log(res);
+      });
   }
 }
