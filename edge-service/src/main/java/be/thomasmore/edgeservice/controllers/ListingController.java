@@ -26,13 +26,22 @@ public class ListingController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @GetMapping("/all")
+    @GetMapping("/allDreamTeams")
     public List<DreamTeam> getAllDreamTeams() {
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://dream-teams-service/dreamTeams", GenericResponseWrapper.class);
 
         List<DreamTeam> dreamTeams = objectMapper.convertValue(wrapper.get_embedded().get("dreamTeams"), new TypeReference<List<DreamTeam>>() { });
 
         return dreamTeams;
+    }
+
+    @GetMapping("/allFavorieteSpelers")
+    public List<FavorieteSpeler> getAllFavorieteSpelers() {
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://favoriete-speler-service/favorieteSpelers", GenericResponseWrapper.class);
+
+        List<FavorieteSpeler> favorieteSpelers = objectMapper.convertValue(wrapper.get_embedded().get("favorieteSpelers"), new TypeReference<List<FavorieteSpeler>>() { });
+
+        return favorieteSpelers;
     }
 
 
