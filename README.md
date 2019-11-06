@@ -1,11 +1,12 @@
-# MyMovieDB
-Java project
+# Dreamteam applicatie
+## Java project
 
-Git:
+### Git:
 
-Stap1: git add . <br>
-Stap2: git commit -m "comment" <br>
-stap3: git pull --rebase <br>
-Stap4: git push <br>
+ * Stap1: git add .
+ * Stap2: git commit -m "comment"
+ * stap3: git pull --rebase
+ * Stap4: git push
 
-API KEY: df827d5d437d52be98e0c8e73c1daee2
+### APi:
+https://www.thesportsdb.com/
