@@ -7,19 +7,18 @@ import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Rating {
+public class DreamTeam {
     private String id;
     private Integer userId;
-    private Integer movieId;
-    private Integer scoreNumber;
+    private List<Integer> spelersId;
 
-    public Rating(Integer userId, Integer movieId, Integer scoreNumber) {
+    public DreamTeam(String id, Integer userId, List<Integer> spelersId) {
+        this.id = id;
         this.userId = userId;
-        this.movieId = movieId;
-        this.scoreNumber = scoreNumber;
+        this.spelersId = spelersId;
     }
 
-    public Rating() {
+    public DreamTeam() {
     }
 
     public String getId() {
@@ -38,19 +37,11 @@ public class Rating {
         this.userId = userId;
     }
 
-    public Integer getMovieId() {
-        return movieId;
+    public List<Integer> getSpelersId() {
+        return spelersId;
     }
 
-    public void setMovieId(Integer movieId) {
-        this.movieId = movieId;
-    }
-
-    public Integer getScoreNumber() {
-        return scoreNumber;
-    }
-
-    public void setScoreNumber(Integer scoreNumber) {
-        this.scoreNumber = scoreNumber;
+    public void setSpelersId(List<Integer> spelersId) {
+        this.spelersId = spelersId;
     }
 }
