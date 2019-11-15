@@ -1,20 +1,16 @@
 package be.thomasmore.edgeservice.controllers;
 
+import be.thomasmore.edgeservice.security.JwtConfig;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import be.thomasmore.edgeservice.models.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,6 +21,12 @@ public class ListingController {
     private RestTemplate restTemplate;
     @Autowired
     private ObjectMapper objectMapper;
+
+    private final JwtConfig jwtConfig;
+
+    public ListingController(JwtConfig jwtConfig) {
+        this.jwtConfig = jwtConfig;
+    }
 
     @GetMapping("/allDreamTeams")
     public List<DreamTeam> getAllDreamTeams() {
@@ -44,7 +46,31 @@ public class ListingController {
         return favorieteSpelers;
     }
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<String> getUsername(@RequestHeader("Authorization") String token) {
+        token = token.substring(7);
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtConfig.getSecret().getBytes())
+                .parseClaimsJws(token)
+                .getBody();
 
+        String username = claims.getSubject();
 
+        return new ResponseEntity<String>("Hello " + username, HttpStatus.OK);
+    }
 
+    @GetMapping(value = "/admin")
+    @ResponseBody
+    public ResponseEntity<String> getAdminUsername(@RequestHeader("Authorization") String token) {
+        token = token.substring(7);
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtConfig.getSecret().getBytes())
+                .parseClaimsJws(token)
+                .getBody();
+
+        String username = claims.getSubject();
+
+        return new ResponseEntity<String>("Hello administrator with name" + username, HttpStatus.OK);
+    }
 }

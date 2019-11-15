@@ -1,5 +1,6 @@
 package be.thomasmore.edgeservice;
 
+import be.thomasmore.edgeservice.security.JwtConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,6 +30,8 @@ public class EdgeServiceApplication {
         return new ObjectMapper();
     }
 
+    @Bean
+    public JwtConfig getJwtConfig() {return new JwtConfig();}
 
     public static void main(String[] args) {
         SpringApplication.run(EdgeServiceApplication.class, args);
