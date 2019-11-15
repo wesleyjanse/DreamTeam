@@ -6,4 +6,5 @@ import org.springframework.data.repository.query.Param;
 
 public interface FavorieteSpelerRepository extends MongoRepository<FavorieteSpeler, String> {
     FavorieteSpeler findFavorieteSpelerByUserId(@Param("userid") Integer userid);
+    FavorieteSpeler findFavorieteSpelerById(@Param("id") String id);
 }

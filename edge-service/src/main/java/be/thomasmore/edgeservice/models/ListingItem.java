@@ -7,11 +7,16 @@ public class ListingItem {
     private String title;
     private Integer userId;
     private Integer score;
+    private Integer id;
 
     public ListingItem() {
     }
 
-    public ListingItem(String title, Integer score) {
+    public ListingItem(Integer id) {
+        this.id = id;
+    }
+
+    /*public ListingItem(String title, Integer score) {
         this.title = title;
         this.score = score;
     }
@@ -20,6 +25,14 @@ public class ListingItem {
         this.title = title;
         this.score = score;
         this.userId = userId;
+    }*/
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getUserId() {
