@@ -1,7 +1,8 @@
 export class Member {
-    constructor(public memberID: number,
+    constructor(public id: number,
         public username: string,
         public password: string,
+        public role: string,
         public token: string
         ) { }
 }

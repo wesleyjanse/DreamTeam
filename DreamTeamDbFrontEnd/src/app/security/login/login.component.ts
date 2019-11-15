@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
         this.submitted = false;
       },
       () => {
-        this._router.navigate(['Polls']);
+        // this._router.navigate(['Polls']);
+        console.log("It Works!")
       }
     );
   }

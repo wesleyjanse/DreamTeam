@@ -7,7 +7,7 @@ import {DreamTeamDbService} from "./dream-team-db.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'DreamTeamDbFrontEnd';
+  title = 'Dream Team';
   team = undefined;
 
   constructor(private dreamTeamDbService : DreamTeamDbService){

@@ -7,9 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './security/login/login.component';
 import { SecurityModule } from './security/security.module'
+import { MaterialModule } from './core/material.module';
+import { FormSharedModule } from './core/form.module';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
+  
   ];
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     SecurityModule,
+    MaterialModule,
+    FormSharedModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [],
