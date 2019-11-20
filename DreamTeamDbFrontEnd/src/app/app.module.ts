@@ -25,7 +25,7 @@ const appRoutes: Routes = [
     SecurityModule,
     MaterialModule,
     FormSharedModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
