@@ -10,10 +10,13 @@ import { SecurityModule } from './security/security.module'
 import { MaterialModule } from './core/material.module';
 import { FormSharedModule } from './core/form.module';
 import { TestComponent } from './test/test.component';
+import { HomeComponent } from './home/home.component';
+import { HomeModule } from './home/home.module';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'test', component: TestComponent },
+  { path: 'home', component: HomeComponent}
   
   ];
 @NgModule({
@@ -28,7 +31,8 @@ const appRoutes: Routes = [
     SecurityModule,
     MaterialModule,
     FormSharedModule,
-    RouterModule.forRoot(appRoutes)
+    HomeModule,
+    RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [],
   bootstrap: [AppComponent]
