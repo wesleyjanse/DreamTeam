@@ -9,20 +9,17 @@ import { LoginComponent } from './security/login/login.component';
 import { SecurityModule } from './security/security.module'
 import { MaterialModule } from './core/material.module';
 import { FormSharedModule } from './core/form.module';
-import { TestComponent } from './test/test.component';
-import { HomeComponent } from './home/home.component';
-import { HomeModule } from './home/home.module';
+import { DreamteamComponent } from './dreamteam/dreamteam/dreamteam.component';
+import { DreamteamModule } from './dreamteam/dreamteam.module';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'test', component: TestComponent },
-  { path: 'home', component: HomeComponent}
-  
+  { path: 'dreamteam', component: DreamteamComponent },
   ];
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
+    DreamteamComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +28,7 @@ const appRoutes: Routes = [
     SecurityModule,
     MaterialModule,
     FormSharedModule,
-    HomeModule,
+    DreamteamModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [],

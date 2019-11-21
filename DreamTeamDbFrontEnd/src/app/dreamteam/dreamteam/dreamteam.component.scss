@@ -1,0 +1,22 @@
+.jumbotron {
+    box-shadow: none;
+    background: lighten(#37479F, 15%);
+    color: white;
+    min-height: 300px;
+    margin: 15px 0px;
+
+    h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+  
+    h3 {
+      font-size: 19px;
+    }
+  
+    h1,
+    h3{
+      text-align: center;
+      font-weight: 100;
+    }
+  }
