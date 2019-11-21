@@ -29,9 +29,11 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 
         if(!repository.existsAppUserByUsernameEquals("admin")){
             final List<AppUser> users = Arrays.asList(
-                    new AppUser(1,"jos", encoder.encode("12345"), "USER"),
-                    new AppUser(2,"admin", encoder.encode("12345"), "ADMIN"),
-                    new AppUser(3,"jef", encoder.encode("123456"),"USER")
+                    new AppUser(1,"admin", encoder.encode("12345"), "ADMIN"),
+                    new AppUser(2,"brecht", encoder.encode("12345"), "USER"),
+                    new AppUser(3,"wesley", encoder.encode("123456"),"USER"),
+                    new AppUser(4,"agit", encoder.encode("12345"), "USER"),
+                    new AppUser(5,"liam", encoder.encode("12345"), "USER")
             );
             repository.insert(users);
         }

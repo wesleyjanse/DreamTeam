@@ -22,18 +22,17 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this._authenticateService.authenticate(this.model).subscribe(result => {
-      console.log(result);
+      //console.log(result.token);
       localStorage.setItem("token", result.token);
-      localStorage.setItem("member", JSON.stringify(result));
+      localStorage.setItem("member", JSON.stringify(this.model.username));
       //this._authenticateService.isLoggedin.next(result.token ? true : false);
-      console.log(result);
     },
       error => {
         this.userCheck = true;
         this.submitted = false;
       },
       () => {
-        // this._router.navigate(['Polls']);
+        this._router.navigate(['test']);
         console.log("It Works!")
       }
     );

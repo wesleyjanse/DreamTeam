@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MemberLogin } from '../models/memberLogin.model';
 import { Member } from '../models/member.model';
 
@@ -13,6 +13,12 @@ export class AuthenticateService {
   constructor(private _httpClient: HttpClient) { }
   authenticate(memberLogin: MemberLogin): Observable<Member> {
     return this._httpClient.post<Member>("http://localhost:8762/auth/", memberLogin);
+  }
+
+  getTest(): Observable<any[]> {
+    return this._httpClient.get<any[]>("http://localhost:8762/edge/listings/allFavorieteSpelers/", {
+      headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
+      });
   }
 
   checkLoggedIn() {

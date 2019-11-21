@@ -9,14 +9,17 @@ import { LoginComponent } from './security/login/login.component';
 import { SecurityModule } from './security/security.module'
 import { MaterialModule } from './core/material.module';
 import { FormSharedModule } from './core/form.module';
+import { TestComponent } from './test/test.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'test', component: TestComponent },
   
   ];
 @NgModule({
   declarations: [
     AppComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
