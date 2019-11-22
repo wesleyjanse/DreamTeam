@@ -12,16 +12,17 @@ import { FormSharedModule } from './core/form.module';
 import { DreamteamComponent } from './dreamteam/dreamteam/dreamteam.component';
 import { DreamteamModule } from './dreamteam/dreamteam.module';
 import { TestComponent } from './test/test.component';
+import { DreamteameditComponent } from './dreamteam/dreamteamedit/dreamteamedit.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'dreamteam', component: DreamteamComponent },
+  { path: 'dreamteamedit', component: DreamteameditComponent },
   { path: 'test', component: TestComponent },
   ];
 @NgModule({
   declarations: [
     AppComponent,
-    DreamteamComponent,
     TestComponent
   ],
   imports: [

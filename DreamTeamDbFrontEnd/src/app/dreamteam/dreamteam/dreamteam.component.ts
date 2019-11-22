@@ -5,6 +5,7 @@ import { Dreamteam } from 'src/app/models/dreamteam.model';
 import { AuthenticateService } from 'src/app/security/authenticate.service';
 import { Member } from 'src/app/models/member.model';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dreamteam',
@@ -16,7 +17,7 @@ export class DreamteamComponent implements OnInit {
   hasDreamteam: boolean = false;
   dreamteam: Dreamteam;
 
-  constructor(private fb: FormBuilder, private dts: DreamteamService, private _authenticateService: AuthenticateService) {
+  constructor(private fb: FormBuilder, private dts: DreamteamService, private _authenticateService: AuthenticateService, private router: Router) {
     this._authenticateService.isLoggedin.subscribe(e => {
       if (localStorage.getItem('member') != null) {
         this.member = JSON.parse(localStorage.getItem('member'));
@@ -59,6 +60,7 @@ export class DreamteamComponent implements OnInit {
 
   clickEdit(){
     console.log('edit');
+    this.router.navigate(['dreamteamedit']);
   }
 
   clickDelete(){

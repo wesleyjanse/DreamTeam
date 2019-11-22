@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <h1 style="text-align: center;">Wijzig jouw dreamteam!</h1>
+    </div>
+    <div class="col-md-12">
+      <form style="width: 100%;" [formGroup]="soccerForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+          <input formControlName="teamNaam" matInput placeholder="Team naam" value="">
+        </mat-form-field>
+        <br/>
+        <br/>
+        <h3>Doelman</h3>
+        <!-- doelman -->
+        <mat-form-field style="width: 50%;">
+          <mat-label>Doelman</mat-label>
+          <mat-select formControlName="doelman">
+            <mat-option *ngFor="let d of Doelmannen" [value]="d">
+              {{d}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <br />
+        <h3>Verdediging</h3>
+        <!-- verdedigers -->
+        <div>
+          <mat-form-field style="width: 50%;">
+            <mat-label>Linksachter</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="width: 50%;">
+            <mat-label>Verdediger 1</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="width: 50%;">
+            <mat-label>Verdediger 2</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="width: 50%;">
+            <mat-label>Rechtsachter</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <br />
+        <br />
+        <h3>Middenveld</h3>
+        <!-- middenvelders -->
+        <div>
+          <mat-form-field style="width: 33%;">
+            <mat-label>Linkse middenvelder</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="width: 33%;">
+            <mat-label>Centraal Middenvelder</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="width: 33%;">
+            <mat-label>Rechtse middenvelder</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <br />
+        <br />
+        <h3>Aanvallers</h3>
+        <!-- middenvelders -->
+        <div>
+          <mat-form-field style="width: 33%;">
+            <mat-label>Linkse middenvelder</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="width: 33%;">
+            <mat-label>Centraal Middenvelder</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="width: 33%;">
+            <mat-label>Rechtse middenvelder</mat-label>
+            <mat-select formControlName="doelman">
+              <mat-option *ngFor="let d of Doelmannen" [value]="d">
+                {{d}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+        <p>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!soccerForm.valid">Submit</button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

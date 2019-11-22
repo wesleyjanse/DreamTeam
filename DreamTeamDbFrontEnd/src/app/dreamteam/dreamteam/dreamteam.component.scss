@@ -21,6 +21,11 @@
     }
   }
 
+  body{
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
   .veld{
     background-image: url('../../../assets/pitch.png');
     background-repeat: no-repeat;
