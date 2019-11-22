@@ -41,6 +41,15 @@ public class ListingController {
         return dreamTeams;
     }
 
+       /*
+    Dreamteam opvragen via userId
+     */
+
+    @GetMapping("/dreamteams/{id}")
+    public DreamTeam getDreamteamByUserId(@PathVariable Integer id) {
+        return restTemplate.getForObject("http://dream-teams-service/dreamTeams/search/findDreamTeamByUserId?userid=" + id, DreamTeam.class);
+    }
+
 
      /*
     Dreamteam toevoegen

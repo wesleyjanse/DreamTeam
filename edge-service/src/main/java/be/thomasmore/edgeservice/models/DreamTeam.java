@@ -10,10 +10,10 @@ import java.util.List;
 public class DreamTeam {
     private String id;
     private String naam;
-    private String userId;
-    private List<String> spelersId;
+    private Integer userId;
+    private List<Integer> spelersId;
 
-    public DreamTeam(String id, String naam, String userId, List<String> spelersId) {
+    public DreamTeam(String id, String naam, Integer userId, List<Integer> spelersId) {
         this.id = id;
         this.userId = userId;
         this.spelersId = spelersId;
@@ -35,19 +35,19 @@ public class DreamTeam {
         this.id = id;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public List<String> getSpelersId() {
+    public List<Integer> getSpelersId() {
         return spelersId;
     }
 
-    public void setSpelersId(List<String> spelersId) {
+    public void setSpelersId(List<Integer> spelersId) {
         this.spelersId = spelersId;
     }
 }

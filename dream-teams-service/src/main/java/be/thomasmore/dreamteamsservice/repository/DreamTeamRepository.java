@@ -9,7 +9,6 @@ import java.util.List;
 
 @CrossOrigin
 public interface DreamTeamRepository extends MongoRepository<DreamTeam, String> {
-//    List<DreamTeam> findRatingsByUserId(@Param("userid") Integer userid);
-//    List<DreamTeam> findRatingsByMovieId(@Param("movieid") Integer movieId);
-//    DreamTeam findRatingByUserIdAndMovieId(@Param("userid") Integer userid,@Param("movieid") Integer movieId);
+    DreamTeam findDreamTeamByUserId(@Param("userid") Integer userid);
+    DreamTeam findDreamTeamById(@Param("id") String id);
 }

@@ -1,4 +1,4 @@
-<div class="mt-2 container">
+<div *ngIf="!hasDreamteam" class="mt-2 container">
   <div class="row">
     <div class="col-md-12 justify-content-center d-flex">
       <h1>Maak je eigen dreamteam!</h1>
@@ -25,16 +25,187 @@
           </div>
           <div class="col-md-4 offset-md-4 mt-2">
             <form [formGroup]="titleForm" (ngSubmit)="onSubmit()">
-                <mat-form-field style="width: 100%;" appearance="outline">
-                    <mat-label>Team naam</mat-label>
-                    <input formControlName="title" matInput placeholder="Team naam">
-                  </mat-form-field>
+              <mat-form-field style="width: 100%;" appearance="outline">
+                <mat-label>Team naam</mat-label>
+                <input formControlName="title" matInput placeholder="Team naam">
+              </mat-form-field>
               <p><button mat-raised-button color="primary" type="submit"
                   [disabled]="!titleForm.valid || submitted">Submit</button></p>
             </form>
           </div>
         </div>
       </mat-card>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="hasDreamteam">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-toolbar color="secundary">
+        <mat-toolbar-row>
+          <span>{{ dreamteam.naam }}</span>
+          <span class="spacer"></span>
+          <button (click)="clickEdit()" mat-stroked-button>
+            <mat-icon class="icon" aria-hidden="false" aria-label="Example heart icon">edit</mat-icon>
+          </button>
+          <button mat-stroked-button (click)="clickDelete()">
+            <mat-icon class="icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+          </button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+  </div>
+
+  <!-- doelman -->
+  <div class="row ">
+    <div class="col-md-12 veld">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Doelman</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- verdediging -->
+      <div class="row">
+        <div class="col-md-3">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Verdediger</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div class="col-md-3">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Verdediger</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div class="col-md-3">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Verdediger</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div class="col-md-3">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Verdediger</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- middenveld -->
+      <div class="row">
+        <div class="col-md-4">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Middenvelder</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div class="col-md-4">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Middenvelder</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div class="col-md-4">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Middenvelder</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- aanval -->
+      <div class="row">
+        <div class="col-md-4">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Aanvaller</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div class="col-md-4">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Aanvaller</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div class="col-md-4">
+          <mat-card class="card mt-5">
+            <mat-card-header>
+              <mat-card-title>Van Persie</mat-card-title>
+              <mat-card-subtitle>Aanvaller</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="../../../assets/persie.png" alt="Player">
+            <mat-card-actions>
+              <button mat-button>Verwijder</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
     </div>
   </div>
 </div>

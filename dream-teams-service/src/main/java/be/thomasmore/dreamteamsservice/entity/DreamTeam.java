@@ -13,7 +13,6 @@ public class DreamTeam {
     @Id
     private String id;
     private String naam;
-    private String userId;
-    private List<String> spelersId;
-
+    private Integer userId;
+    private List<Integer> spelersId;
 }

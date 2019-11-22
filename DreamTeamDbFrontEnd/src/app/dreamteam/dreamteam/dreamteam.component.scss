@@ -20,3 +20,48 @@
       font-weight: 100;
     }
   }
+
+  .veld{
+    background-image: url('../../../assets/pitch.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-attachment: scroll;
+    height: 150vh;
+    width: 100%;
+  }
+
+  .card {
+    max-width: 200px;
+  }
+
+  mat-card-image{
+    max-height: 100px;
+  }
+
+  .col-md-3{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  
+  .col-md-4{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .col-md-6{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .icon {
+    padding: 0 0px;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }

@@ -12,4 +12,10 @@ export class DreamteamService {
       headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
       });
   }
+
+  getDreamTeam(id: number): Observable<Dreamteam> {
+    return this._httpClient.get<Dreamteam>("http://localhost:8762/edge/listings/dreamteams/" + id, {
+      headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
+      });
+  }
 }
