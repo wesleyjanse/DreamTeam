@@ -9,17 +9,23 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DreamTeam {
     private String id;
-    private Integer userId;
-    private List<Integer> spelersId;
+    private String naam;
+    private String userId;
+    private List<String> spelersId;
 
-    public DreamTeam(String id, Integer userId, List<Integer> spelersId) {
+    public DreamTeam(String id, String naam, String userId, List<String> spelersId) {
         this.id = id;
         this.userId = userId;
         this.spelersId = spelersId;
+        this.naam = naam;
     }
 
     public DreamTeam() {
     }
+
+    public String getNaam() { return naam; }
+
+    public void setNaam(String naam) { this.naam = naam; }
 
     public String getId() {
         return id;
@@ -29,19 +35,19 @@ public class DreamTeam {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public List<Integer> getSpelersId() {
+    public List<String> getSpelersId() {
         return spelersId;
     }
 
-    public void setSpelersId(List<Integer> spelersId) {
+    public void setSpelersId(List<String> spelersId) {
         this.spelersId = spelersId;
     }
 }

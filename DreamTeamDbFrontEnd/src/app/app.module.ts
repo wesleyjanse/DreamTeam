@@ -11,15 +11,18 @@ import { MaterialModule } from './core/material.module';
 import { FormSharedModule } from './core/form.module';
 import { DreamteamComponent } from './dreamteam/dreamteam/dreamteam.component';
 import { DreamteamModule } from './dreamteam/dreamteam.module';
+import { TestComponent } from './test/test.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'dreamteam', component: DreamteamComponent },
+  { path: 'test', component: TestComponent },
   ];
 @NgModule({
   declarations: [
     AppComponent,
     DreamteamComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

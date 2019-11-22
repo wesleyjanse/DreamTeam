@@ -43,18 +43,18 @@ public class ListingController {
 
 
      /*
-    Dreamteam speler toevoegen
+    Dreamteam toevoegen
      */
 
-    @PostMapping("/dreamTeams")
+    @PostMapping("/dreamteams")
     public ResponseEntity<String> postDreamteam(@RequestBody DreamTeam dreamTeam){
 
         List<HttpMessageConverter<?>> list = new ArrayList<>();
         list.add(new MappingJackson2HttpMessageConverter());
         restTemplate.setMessageConverters(list);
 
-        ResponseEntity<String> result = restTemplate.postForEntity(
-                "http://dream-teams-service/dreamteams/", dreamTeam, String.class
+        ResponseEntity<DreamTeam> result = restTemplate.postForEntity(
+                "http://dream-teams-service/dreamTeams/", dreamTeam, DreamTeam.class
         );
 
         return ResponseEntity.ok().build();

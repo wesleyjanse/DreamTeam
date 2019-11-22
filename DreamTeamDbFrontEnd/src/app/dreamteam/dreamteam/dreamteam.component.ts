@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { DreamteamService } from '../dreamteam.service';
 import { Dreamteam } from 'src/app/models/dreamteam.model';
+import { AuthenticateService } from 'src/app/security/authenticate.service';
+import { Member } from 'src/app/models/member.model';
 
 @Component({
   selector: 'app-dreamteam',
@@ -9,8 +11,15 @@ import { Dreamteam } from 'src/app/models/dreamteam.model';
   styleUrls: ['./dreamteam.component.scss']
 })
 export class DreamteamComponent implements OnInit {
+  member: Member;
 
-  constructor(private fb: FormBuilder, private dts: DreamteamService) { }
+  constructor(private fb: FormBuilder, private dts: DreamteamService, private _authenticateService: AuthenticateService) {
+    this._authenticateService.isLoggedin.subscribe(e => {
+      if (localStorage.getItem('member') != null) {
+        this.member = JSON.parse(localStorage.getItem('member'));
+      }
+    })
+  }
 
   ngOnInit() {
 
@@ -24,10 +33,12 @@ export class DreamteamComponent implements OnInit {
   started: Boolean = false;
 
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
-    let newDreamteam = new Dreamteam(0, this.titleForm.get('title').value, 1)
-    this.dts.addDreamTeam(newDreamteam).subscribe();
+    let newDreamteam = new Dreamteam(this.titleForm.get('title').value, "1")
+    this.dts.addDreamTeam(newDreamteam).subscribe(() => {
+      console.log("yes");
+    });
   }
 
   onBegin() {

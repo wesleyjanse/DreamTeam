@@ -1,9 +1,10 @@
 import { Observable } from 'rxjs';
 
 export class Dreamteam {
-    constructor(public id: number,
+    constructor(
         public naam: string,
-        public userId: number,
-        public spelersId?: Observable<number>
+        public userId: string,
+        public id?: string,
+        public spelersId?: Observable<string>
         ) { }
 }

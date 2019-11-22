@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this._authenticateService.authenticate(this.model).subscribe(result => {
       //console.log(result.token);
       localStorage.setItem("token", result.token);
-      localStorage.setItem("member", JSON.stringify(this.model.username));
+      localStorage.setItem("member", JSON.stringify(this.model));
       //this._authenticateService.isLoggedin.next(result.token ? true : false);
     },
       error => {
