@@ -1,10 +1,18 @@
-package be.thomasmore.authenticationservice.model;
+package be.thomasmore.edgeservice.models;
 
-public class UserCredentials {
+public class AppUser {
     private Integer id;
     private String username, password;
+    private String role;
 
-    // getters and setters ...
+    public AppUser(Integer id, String username, String password, String role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    // getters and setters ....
 
     public Integer getId() {
         return id;
@@ -28,5 +36,13 @@ public class UserCredentials {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

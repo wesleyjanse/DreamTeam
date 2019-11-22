@@ -11,4 +11,5 @@ import java.util.List;
 public interface AppUserRepository extends MongoRepository<AppUser, String> {
     Boolean existsAppUserByUsernameEquals(String userName);
     AppUser findByUsernameEquals(String userName);
+    AppUser findAppUserByUsername(@Param("username") String username);
 }

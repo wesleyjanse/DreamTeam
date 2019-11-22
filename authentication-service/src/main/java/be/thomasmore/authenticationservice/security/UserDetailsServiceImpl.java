@@ -47,6 +47,7 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 
 // The "User" class is provided by Spring and represents a model class for user to be returned by UserDetailsService
 // And used by auth manager to verify and check user authentication.
+
             return new User(appUser.getUsername(), appUser.getPassword(), grantedAuthorities);
         }
 

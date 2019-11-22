@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this._authenticateService.authenticate(this.model).subscribe(result => {
-      //console.log(result.token);
+      console.log(result);
       localStorage.setItem("token", result.token);
       localStorage.setItem("member", JSON.stringify(this.model));
       //this._authenticateService.isLoggedin.next(result.token ? true : false);

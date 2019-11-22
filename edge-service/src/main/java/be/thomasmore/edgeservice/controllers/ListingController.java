@@ -95,8 +95,8 @@ public class ListingController {
         list.add(new MappingJackson2HttpMessageConverter());
         restTemplate.setMessageConverters(list);
 
-        ResponseEntity<String> result = restTemplate.postForEntity(
-                "http://favoriete-speler-service/favorieteSpelers/", favorieteSpeler, String.class
+        ResponseEntity<FavorieteSpeler> result = restTemplate.postForEntity(
+                "http://favoriete-speler-service/favorieteSpelers/", favorieteSpeler, FavorieteSpeler.class
         );
 
         return ResponseEntity.ok().build();
@@ -113,7 +113,7 @@ public class ListingController {
         list.add(new MappingJackson2HttpMessageConverter());
         restTemplate.setMessageConverters(list);
 
-        restTemplate.put("http://favoriete-speler-service/favorieteSpelers/" + id, favorieteSpeler, String.class);
+        restTemplate.put("http://favoriete-speler-service/favorieteSpelers/" + id, favorieteSpeler, FavorieteSpeler.class);
 
         return ResponseEntity.ok().build();
     }
@@ -156,5 +156,13 @@ public class ListingController {
         String username = claims.getSubject();
 
         return new ResponseEntity<String>("Hello administrator with name" + username, HttpStatus.OK);
+    }
+
+    @GetMapping("user/{username}")
+    public AppUser getAppUserByUsername(@PathVariable("username") String username) {
+        AppUser appUser = restTemplate.getForObject(
+                "http://auth-service/appUsers/search/findAppUserByUsername?username=" + username, AppUser.class);
+
+        return appUser;
     }
 }

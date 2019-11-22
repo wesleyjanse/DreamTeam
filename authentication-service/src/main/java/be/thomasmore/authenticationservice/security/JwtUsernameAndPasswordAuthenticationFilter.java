@@ -33,6 +33,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     private AuthenticationManager authManager;
 
     private final JwtConfig jwtConfig;
+    public Integer id =0;
 
     public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authManager, JwtConfig jwtConfig) {
         this.authManager = authManager;
@@ -51,7 +52,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
             // 1. Get credentials from request
             UserCredentials creds = new ObjectMapper().readValue(request.getInputStream(), UserCredentials.class);
-
+            id = creds.getId();
             // 2. Create auth object (contains credentials) which will be used by auth manager
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                     creds.getUsername(), creds.getPassword(), Collections.emptyList());
@@ -86,7 +87,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("{\"token\":\"" + token + "\"}");
+        response.getWriter().write("{\"token\":\"" + token + "\"," +
+                "                        \"username\":\"" + auth.getName() + "\"}");
         
     }
 }
