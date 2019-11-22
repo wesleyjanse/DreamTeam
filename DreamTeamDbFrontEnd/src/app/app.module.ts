@@ -32,7 +32,7 @@ const appRoutes: Routes = [
     MaterialModule,
     FormSharedModule,
     DreamteamModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

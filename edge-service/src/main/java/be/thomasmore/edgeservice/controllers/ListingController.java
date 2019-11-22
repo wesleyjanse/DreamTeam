@@ -154,15 +154,8 @@ public class ListingController {
                 .getBody();
 
         String username = claims.getSubject();
+        String id = claims.getId();
 
-        return new ResponseEntity<String>("Hello administrator with name" + username, HttpStatus.OK);
-    }
-
-    @GetMapping("user/{username}")
-    public AppUser getAppUserByUsername(@PathVariable("username") String username) {
-        AppUser appUser = restTemplate.getForObject(
-                "http://auth-service/appUsers/search/findAppUserByUsername?username=" + username, AppUser.class);
-
-        return appUser;
+        return new ResponseEntity<String>("Hello administrator with name" + username + "  " + id, HttpStatus.OK);
     }
 }

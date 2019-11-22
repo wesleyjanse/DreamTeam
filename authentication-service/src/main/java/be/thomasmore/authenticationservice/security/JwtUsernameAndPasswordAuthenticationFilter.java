@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import be.thomasmore.authenticationservice.model.UserCredentials;
+import be.thomasmore.authenticationservice.repository.AppUserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,7 +34,6 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     private AuthenticationManager authManager;
 
     private final JwtConfig jwtConfig;
-    public Integer id =0;
 
     public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authManager, JwtConfig jwtConfig) {
         this.authManager = authManager;
@@ -52,7 +52,6 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
             // 1. Get credentials from request
             UserCredentials creds = new ObjectMapper().readValue(request.getInputStream(), UserCredentials.class);
-            id = creds.getId();
             // 2. Create auth object (contains credentials) which will be used by auth manager
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                     creds.getUsername(), creds.getPassword(), Collections.emptyList());
@@ -82,12 +81,31 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .setExpiration(new Date(now + jwtConfig.getExpiration() * 1000))  // in milliseconds
                 .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes())
                 .compact();
+        String id = "";
+        switch(auth.getName()) {
+            case "admin":
+                id = "1";
+                break;
+            case "brecht":
+                id = "2";
+                break;
+                case "wesley":
+                id = "3";
+                break;
+                case "agit":
+                id = "4";
+                break;
+                case "liam":
+                id = "5";
+                break;
+        }
 
         // Add token to header
         response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write("{\"token\":\"" + token + "\"," +
+                "                        \"id\":\"" + id + "\"," +
                 "                        \"username\":\"" + auth.getName() + "\"}");
         
     }
