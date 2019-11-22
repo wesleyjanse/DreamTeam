@@ -41,6 +41,25 @@ public class ListingController {
         return dreamTeams;
     }
 
+
+     /*
+    Dreamteam speler toevoegen
+     */
+
+    @PostMapping("/dreamTeams")
+    public ResponseEntity<String> postDreamteam(@RequestBody DreamTeam dreamTeam){
+
+        List<HttpMessageConverter<?>> list = new ArrayList<>();
+        list.add(new MappingJackson2HttpMessageConverter());
+        restTemplate.setMessageConverters(list);
+
+        ResponseEntity<String> result = restTemplate.postForEntity(
+                "http://dream-teams-service/dreamteams/", dreamTeam, String.class
+        );
+
+        return ResponseEntity.ok().build();
+    }
+
     /*
     Lijst opvragen met alle favoriete spelers
      */

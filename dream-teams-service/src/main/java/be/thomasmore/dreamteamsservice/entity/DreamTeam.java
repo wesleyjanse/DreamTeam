@@ -11,7 +11,8 @@ import java.util.List;
 @Document(collection = "dreamTeam")
 public class DreamTeam {
     @Id
-    private String id;
+    private Integer id;
+    private String naam;
     private Integer userId;
     private List<Integer> spelersId;
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { DreamteamService } from '../dreamteam.service';
+import { Dreamteam } from 'src/app/models/dreamteam.model';
 
 @Component({
   selector: 'app-dreamteam',
@@ -8,7 +10,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class DreamteamComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private dts: DreamteamService) { }
 
   ngOnInit() {
 
@@ -24,6 +26,8 @@ export class DreamteamComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;
+    let newDreamteam = new Dreamteam(0, this.titleForm.get('title').value, 1)
+    this.dts.addDreamTeam(newDreamteam).subscribe();
   }
 
   onBegin() {
