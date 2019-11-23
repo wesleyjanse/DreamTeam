@@ -2,6 +2,7 @@ package be.thomasmore.edgeservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import reactor.util.annotation.Nullable;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -11,6 +12,7 @@ public class FavorieteSpeler {
     private Integer spelerId;
     private Integer teamId;
     private Integer userId;
+    @Nullable
     private String positie;
 
     public FavorieteSpeler() {

@@ -13,14 +13,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./dreamteam.component.scss']
 })
 export class DreamteamComponent implements OnInit {
-  member: Member;
+  memberName: string;
+  memberId: number;
   hasDreamteam: boolean = false;
   dreamteam: Dreamteam;
 
   constructor(private fb: FormBuilder, private dts: DreamteamService, private _authenticateService: AuthenticateService, private router: Router) {
+    
+  }
+
+  ngOnInit() {
     this._authenticateService.isLoggedin.subscribe(e => {
       if (localStorage.getItem('member') != null) {
-        this.member = JSON.parse(localStorage.getItem('member'));
+        this.memberName = localStorage.getItem('member');
+        this.memberId = Number(localStorage.getItem('id'));
         this.dts.getDreamTeam(1).subscribe((res) => {
           console.log(res);
           if (res != null) {
@@ -30,10 +36,6 @@ export class DreamteamComponent implements OnInit {
         })
       }
     })
-  }
-
-  ngOnInit() {
-
   }
 
 
@@ -48,9 +50,10 @@ export class DreamteamComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    let newDreamteam = new Dreamteam(this.titleForm.get('title').value, 1, null, )
+    let spelers = [1, 2, 3]
+    let newDreamteam = new Dreamteam(this.titleForm.get('title').value, this.memberId, null, spelers)
     this.dts.addDreamTeam(newDreamteam).subscribe(() => {
-      console.log("yes");
+      this.ngOnInit();
     });
   }
 
@@ -58,12 +61,12 @@ export class DreamteamComponent implements OnInit {
     this.started = true;
   }
 
-  clickEdit(){
+  clickEdit() {
     console.log('edit');
     this.router.navigate(['dreamteamedit']);
   }
 
-  clickDelete(){
+  clickDelete() {
     console.log('delete');
   }
 }

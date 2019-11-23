@@ -21,18 +21,13 @@
     }
   }
 
-  body{
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
   .veld{
     background-image: url('../../../assets/pitch.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: scroll;
-    height: 150vh;
+    height: 100%;
     width: 100%;
   }
 
@@ -40,8 +35,12 @@
     max-width: 200px;
   }
 
-  mat-card-image{
-    max-height: 100px;
+  img.mat-card-image {
+    max-height: 150px;
+  }
+
+  mat-card{
+    margin: 20px !important;
   }
 
   .col-md-3{

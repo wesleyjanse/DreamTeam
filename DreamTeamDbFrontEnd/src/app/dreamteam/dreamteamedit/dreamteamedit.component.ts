@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { DreamteamService } from '../dreamteam.service';
 
 @Component({
   selector: 'app-dreamteamedit',
@@ -8,7 +9,11 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class DreamteameditComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private dreamteamService: DreamteamService) { 
+    this.dreamteamService.getFavorieteSpelersByUserId(1).subscribe((result) => {
+      console.log(result);
+    })
+  }
 
   ngOnInit() {
   }

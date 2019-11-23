@@ -8,5 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin
 public interface FavorieteSpelerRepository extends MongoRepository<FavorieteSpeler, String> {
     FavorieteSpeler findFavorieteSpelerByUserId(@Param("userid") Integer userid);
+    FavorieteSpeler findFavorieteSpelersByUserId(@Param("userid") Integer userid);
     FavorieteSpeler findFavorieteSpelerById(@Param("id") String id);
 }

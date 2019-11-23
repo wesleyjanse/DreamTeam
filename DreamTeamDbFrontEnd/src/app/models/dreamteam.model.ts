@@ -5,6 +5,6 @@ export class Dreamteam {
         public naam: string,
         public userId: number,
         public id?: string,
-        public spelersId?: Observable<number[]>
+        public spelersId?: number[]
         ) { }
 }

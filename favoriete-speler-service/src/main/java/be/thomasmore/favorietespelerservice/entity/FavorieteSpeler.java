@@ -13,7 +13,7 @@ public class FavorieteSpeler {
     private String naam;
     private Integer spelerId;
     private Integer teamId;
-    private Integer userId;
+    private Integer  userId;
     @Nullable
     private String positie;
 }

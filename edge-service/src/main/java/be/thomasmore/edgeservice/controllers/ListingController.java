@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import be.thomasmore.edgeservice.models.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -67,6 +68,18 @@ public class ListingController {
         );
 
         return ResponseEntity.ok().build();
+    }
+
+
+       /*
+    favorietespelers opvragen via userId
+     */
+
+    @GetMapping("/getAllFavorieteSpelereById/{id}")
+    public List<FavorieteSpeler> getAllFavorieteSpelereById(@PathVariable Integer id) {
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://favoriete-speler-service/favorieteSpelers/search/findFavorieteSpelersByUserId?userid=" + id, GenericResponseWrapper.class);
+        List<FavorieteSpeler> favorieteSpelers = objectMapper.convertValue(wrapper.get_embedded().get("favorieteSpelers"), new TypeReference<List<FavorieteSpeler>>() { });
+        return favorieteSpelers;
     }
 
     /*
