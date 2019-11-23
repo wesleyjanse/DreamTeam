@@ -5,9 +5,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.List;
+
 @CrossOrigin
 public interface FavorieteSpelerRepository extends MongoRepository<FavorieteSpeler, String> {
-    FavorieteSpeler findFavorieteSpelerByUserId(@Param("userid") Integer userid);
-    FavorieteSpeler findFavorieteSpelersByUserId(@Param("userid") Integer userid);
+    //FavorieteSpeler findFavorieteSpelerByUserId(@Param("userid") Integer userid);
+    List<FavorieteSpeler> findFavorieteSpelersByUserId(@Param("userId") Integer userId);
     FavorieteSpeler findFavorieteSpelerById(@Param("id") String id);
 }

@@ -75,9 +75,9 @@ public class ListingController {
     favorietespelers opvragen via userId
      */
 
-    @GetMapping("/getAllFavorieteSpelereById/{id}")
-    public List<FavorieteSpeler> getAllFavorieteSpelereById(@PathVariable Integer id) {
-        GenericResponseWrapper wrapper = restTemplate.getForObject("http://favoriete-speler-service/favorieteSpelers/search/findFavorieteSpelersByUserId?userid=" + id, GenericResponseWrapper.class);
+    @GetMapping("/getAllFavorieteSpelersById/{userId}")
+    public List<FavorieteSpeler> getAllFavorieteSpelersById(@PathVariable("userId") Integer userId) {
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://favoriete-speler-service/favorieteSpelers/search/findFavorieteSpelersByUserId?userId=" + userId, GenericResponseWrapper.class);
         List<FavorieteSpeler> favorieteSpelers = objectMapper.convertValue(wrapper.get_embedded().get("favorieteSpelers"), new TypeReference<List<FavorieteSpeler>>() { });
         return favorieteSpelers;
     }
