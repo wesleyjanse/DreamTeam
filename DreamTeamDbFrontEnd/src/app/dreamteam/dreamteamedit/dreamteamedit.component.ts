@@ -40,11 +40,13 @@ export class DreamteameditComponent implements OnInit {
           this.dreamteam = res.dreamTeam;
           this.SelectedSpelers = res.spelers;
           let teller = 0;
-          for (const field in this.soccerForm.controls) { 
-            const control = this.soccerForm.get(field); 
+          for (const field in this.soccerForm.controls) {
+            const control = this.soccerForm.get(field);
             teller++;
             if (teller > 1) {
-              control.setValue(this.SelectedSpelers[teller-2].id)
+              if (this.SelectedSpelers[teller - 2].id != null) {
+                control.setValue(this.SelectedSpelers[teller - 2].id)
+              }
             }
           }
         })
@@ -94,7 +96,7 @@ export class DreamteameditComponent implements OnInit {
     playerids.push(this.soccerForm.get("aanvaller1").value)
     playerids.push(this.soccerForm.get("aanvaller2").value)
     playerids.push(this.soccerForm.get("aanvaller3").value)
-    
+
     let updated = new Dreamteam(this.soccerForm.get('teamNaam').value, this.dreamteam.userId, this.dreamteam.id, playerids)
     this.dreamteamService.updateDreamteam(this.dreamteam.id, updated).subscribe(() => {
       this.router.navigate(["dreamteam"]);

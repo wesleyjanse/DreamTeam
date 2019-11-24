@@ -38,4 +38,10 @@ export class DreamteamService {
       headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
       });
   }
+
+  deleteDreamteam(id: string) {
+    return this._httpClient.delete<Dreamteam>("http://localhost:8762/edge/listings/dreamTeam/" + id, {
+      headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
+      });
+  }
 }

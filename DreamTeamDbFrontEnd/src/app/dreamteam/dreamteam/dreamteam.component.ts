@@ -32,11 +32,15 @@ export class DreamteamComponent implements OnInit {
         
         this.dts.getDreamTeamWithSpelers(this.memberId).subscribe((res) => {
           if (res != null) {
-            console.log(res);
             this.dreamteam = res.dreamTeam;
             this.spelers = res.spelers;
             this.hasDreamteam = true;
           }
+        },
+        error => {
+            this.hasDreamteam = false;
+            this.started = false;
+            this.submitted = false;
         })
       }
     })
@@ -71,6 +75,8 @@ export class DreamteamComponent implements OnInit {
   }
 
   clickDelete() {
-    console.log('delete');
+    this.dts.deleteDreamteam(this.dreamteam.id).subscribe(() => {
+      this.ngOnInit()
+    })
   }
 }

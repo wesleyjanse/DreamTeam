@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         this.submitted = false;
       },
       () => {
-        this._router.navigate(['test']);
+        this._router.navigate(['dreamteam']);
         console.log("It Works!")
       }
     );

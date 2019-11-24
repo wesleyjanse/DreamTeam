@@ -33,6 +33,22 @@ public class ListingController {
         this.jwtConfig = jwtConfig;
     }
 
+
+      /*
+        Delete dreamteam
+     */
+
+    @DeleteMapping("/dreamTeam/{id}")
+    public ResponseEntity deleteDreamTeam(@PathVariable("id") String id){
+        restTemplate.delete("http://dream-teams-service/dreamTeams/" + id);
+        return ResponseEntity.ok().build();
+    }
+
+
+    /*
+    * Get all dreamteams
+    * */
+
     @GetMapping("/allDreamTeams")
     public List<DreamTeam> getAllDreamTeams() {
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://dream-teams-service/dreamTeams", GenericResponseWrapper.class);

@@ -1,5 +1,9 @@
 package be.thomasmore.authenticationservice.model;
 
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 public class AppUser {
     private Integer id;
     private String username, password;
@@ -11,7 +15,6 @@ public class AppUser {
         this.password = password;
         this.role = role;
     }
-
     // getters and setters ....
 
     public Integer getId() {

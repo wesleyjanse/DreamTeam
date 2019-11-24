@@ -2,8 +2,10 @@ package be.thomasmore.edgeservice.models;
 
 public class AppUser {
     private Integer id;
-    private String username, password;
-    private String role;
+    private String username, password, role;
+
+    public AppUser() {
+    }
 
     public AppUser(Integer id, String username, String password, String role) {
         this.id = id;
