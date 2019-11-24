@@ -13,12 +13,14 @@ import { DreamteamComponent } from './dreamteam/dreamteam/dreamteam.component';
 import { DreamteamModule } from './dreamteam/dreamteam.module';
 import { TestComponent } from './test/test.component';
 import { DreamteameditComponent } from './dreamteam/dreamteamedit/dreamteamedit.component';
+import { HomeComponent } from './home/home.component';
+import { HomeModule } from './home/home.module';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'dreamteam', component: DreamteamComponent },
   { path: 'dreamteamedit', component: DreamteameditComponent },
-  { path: 'test', component: TestComponent },
+  { path: 'home', component: HomeComponent },
   ];
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ const appRoutes: Routes = [
     MaterialModule,
     FormSharedModule,
     DreamteamModule,
+    HomeModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

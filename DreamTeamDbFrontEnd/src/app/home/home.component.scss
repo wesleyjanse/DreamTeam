@@ -1,7 +1,38 @@
 mat-card{
     text-align: center;
+    height: 100%;
+
+}
+
+mat-button-wrapper{
+    height: 100%;
+}
+
+
+.row{
+    height: 300px;
+}
+
+h1 {
+    font-size: 35px;
+    color: white;
+}
+
+mat-icon{
+    font-size: 30px;
+    color: whitesmoke;
 }
 
 .text-center{
     text-align: center;
+}
+
+button{
+    width: 100%;
+    height: 300px;
+    padding: 0;
+}
+
+mat-flat-button{
+    height: 100%;
 }

@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>{{title}}</span>
+    <a style="text-decoration: none; color: white;" [routerLink]="['home']" routerLinkActive="router-link-active" >{{title}}</a>
     <span class="spacer"></span>
     <button [routerLink]="['dreamteam']" mat-stroked-button class="m-1">Dreamteam</button>
     <button mat-stroked-button class="m-1">Spelers</button>

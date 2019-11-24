@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Dream Team';
+  title = 'DreamTeam';
   team = undefined;
   login: boolean;
 
