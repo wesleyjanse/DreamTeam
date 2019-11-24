@@ -11,9 +11,7 @@ public class FavorieteSpeler {
     @Id
     private String id;
     private String naam;
-    private Integer spelerId;
-    private Integer teamId;
-    private Integer  userId;
-    @Nullable
+    private Integer userId;
     private String positie;
+    private String afbeelding;
 }

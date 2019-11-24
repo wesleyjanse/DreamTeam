@@ -7,17 +7,17 @@
     <div class="col-md-12">
       <form style="width: 100%;" [formGroup]="soccerForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="example-full-width">
-          <input formControlName="teamNaam" matInput placeholder="Team naam" value="">
+          <input formControlName="teamNaam" matInput placeholder="Team naam">
         </mat-form-field>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <h3>Doelman</h3>
         <!-- doelman -->
         <mat-form-field style="width: 50%;">
           <mat-label>Doelman</mat-label>
           <mat-select formControlName="doelman">
-            <mat-option *ngFor="let d of Doelmannen" [value]="d">
-              {{d}}
+            <mat-option *ngFor="let d of Doelmannen" [value]="d.id">
+              {{d.naam}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -27,34 +27,34 @@
         <!-- verdedigers -->
         <div>
           <mat-form-field style="width: 50%;">
-            <mat-label>Linksachter</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-label>Rechtsachter</mat-label>
+            <mat-select formControlName="verdediger1">
+              <mat-option *ngFor="let v of Verdedigers" [value]="v.id">
+                {{v.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field style="width: 50%;">
             <mat-label>Verdediger 1</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-select formControlName="verdediger2">
+              <mat-option *ngFor="let v of Verdedigers" [value]="v.id">
+                {{v.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field style="width: 50%;">
             <mat-label>Verdediger 2</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-select formControlName="verdediger3">
+              <mat-option *ngFor="let v of Verdedigers" [value]="v.id">
+                {{v.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field style="width: 50%;">
-            <mat-label>Rechtsachter</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-label>Linksachter</mat-label>
+            <mat-select formControlName="verdediger4">
+              <mat-option *ngFor="let v of Verdedigers" [value]="v.id">
+                {{v.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -65,26 +65,26 @@
         <!-- middenvelders -->
         <div>
           <mat-form-field style="width: 33%;">
-            <mat-label>Linkse middenvelder</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-label>Rechtse middenvelder</mat-label>
+            <mat-select formControlName="middenvelder1">
+              <mat-option *ngFor="let m of Middenverlders" [value]="m.id">
+                {{m.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field style="width: 33%;">
             <mat-label>Centraal Middenvelder</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-select formControlName="middenvelder2">
+              <mat-option *ngFor="let m of Middenverlders" [value]="m.id">
+                {{m.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field style="width: 33%;">
-            <mat-label>Rechtse middenvelder</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-label>Linkse middenvelder</mat-label>
+            <mat-select formControlName="middenvelder3">
+              <mat-option *ngFor="let m of Middenverlders" [value]="m.id">
+                {{m.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -92,29 +92,29 @@
         <br />
         <br />
         <h3>Aanvallers</h3>
-        <!-- middenvelders -->
+        <!-- aanvallers -->
         <div>
           <mat-form-field style="width: 33%;">
-            <mat-label>Linkse middenvelder</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-label>Rechtse Aanvaller</mat-label>
+            <mat-select formControlName="aanvaller1">
+                <mat-option *ngFor="let a of Aanvallers" [value]="a.id">
+                    {{a.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field style="width: 33%;">
-            <mat-label>Centraal Middenvelder</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-label>Centraal Aanvaller</mat-label>
+            <mat-select formControlName="aanvaller2">
+                <mat-option *ngFor="let a of Aanvallers" [value]="a.id">
+                    {{a.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field style="width: 33%;">
-            <mat-label>Rechtse middenvelder</mat-label>
-            <mat-select formControlName="doelman">
-              <mat-option *ngFor="let d of Doelmannen" [value]="d">
-                {{d}}
+            <mat-label>Linkse Aanvaller</mat-label>
+            <mat-select formControlName="aanvaller3">
+              <mat-option *ngFor="let a of Aanvallers" [value]="a.id">
+                {{a.naam}}
               </mat-option>
             </mat-select>
           </mat-form-field>

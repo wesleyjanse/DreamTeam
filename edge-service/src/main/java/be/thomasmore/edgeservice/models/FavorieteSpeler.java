@@ -9,23 +9,24 @@ import reactor.util.annotation.Nullable;
 public class FavorieteSpeler {
     private String id;
     private String naam;
-    private Integer spelerId;
-    private Integer teamId;
     private Integer userId;
-    @Nullable
     private String positie;
+    private String afbeelding;
 
     public FavorieteSpeler() {
     }
 
-    public FavorieteSpeler(String id, String naam, Integer spelerId, Integer teamId, Integer userId, String positie) {
+    public FavorieteSpeler(String id, String naam, Integer userId, String positie, String afbeelding) {
         this.id = id;
         this.naam = naam;
-        this.spelerId = spelerId;
-        this.teamId = teamId;
         this.userId = userId;
         this.positie = positie;
+        this.afbeelding = afbeelding;
     }
+
+    public String getAfbeelding() { return afbeelding; }
+
+    public void setAfbeelding(String afbeelding) { this.afbeelding = afbeelding; }
 
     public String getId() {
         return id;
@@ -41,22 +42,6 @@ public class FavorieteSpeler {
 
     public void setNaam(String naam) {
         this.naam = naam;
-    }
-
-    public Integer getSpelerId() {
-        return spelerId;
-    }
-
-    public void setSpelerId(Integer spelerId) {
-        this.spelerId = spelerId;
-    }
-
-    public Integer getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Integer teamId) {
-        this.teamId = teamId;
     }
 
     public Integer getUserId() {

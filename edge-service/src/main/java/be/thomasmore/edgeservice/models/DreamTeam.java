@@ -11,9 +11,9 @@ public class DreamTeam {
     private String id;
     private String naam;
     private Integer userId;
-    private List<Integer> spelersId;
+    private List<String> spelersId;
 
-    public DreamTeam(String id, String naam, Integer userId, List<Integer> spelersId) {
+    public DreamTeam(String id, String naam, Integer userId, List<String> spelersId) {
         this.id = id;
         this.userId = userId;
         this.spelersId = spelersId;
@@ -43,11 +43,11 @@ public class DreamTeam {
         this.userId = userId;
     }
 
-    public List<Integer> getSpelersId() {
+    public List<String> getSpelersId() {
         return spelersId;
     }
 
-    public void setSpelersId(List<Integer> spelersId) {
+    public void setSpelersId(List<String> spelersId) {
         this.spelersId = spelersId;
     }
 }

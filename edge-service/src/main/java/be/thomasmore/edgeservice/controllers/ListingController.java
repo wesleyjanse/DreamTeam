@@ -51,6 +51,42 @@ public class ListingController {
         return restTemplate.getForObject("http://dream-teams-service/dreamTeams/search/findDreamTeamByUserId?userid=" + id, DreamTeam.class);
     }
 
+        /*
+    Dreamteam opvragen via userId met Spelers
+     */
+
+    @GetMapping("/getDreamteamWithPlayers/{id}")
+    public DreamteamMetSpelers getDreamteamWithPlayersByUserId(@PathVariable Integer id) {
+        DreamTeam dreamTeam = restTemplate.getForObject("http://dream-teams-service/dreamTeams/search/findDreamTeamByUserId?userid=" + id, DreamTeam.class);
+        List<FavorieteSpeler> spelers = new ArrayList<>();
+
+        for (String spelerId: dreamTeam.getSpelersId()){
+            if (spelerId != ""){
+                FavorieteSpeler speler = this.getFavorieteSpelerById(spelerId);
+                spelers.add(speler);
+            }else{
+                spelers.add(new FavorieteSpeler(null, "Niemand geselecteerd", dreamTeam.getUserId(), "",  "../../../assets/defaultPlayer.png"));
+            }
+        }
+
+        return new DreamteamMetSpelers(dreamTeam, spelers);
+    }
+
+    /*
+    Dreamteam wijzigen
+     */
+
+    @PutMapping("/updateDreamteam/{id}")
+    public ResponseEntity<String> updateDreamteam(@PathVariable("id") String id, @RequestBody DreamTeam dreamTeam){
+
+        List<HttpMessageConverter<?>> list = new ArrayList<>();
+        list.add(new MappingJackson2HttpMessageConverter());
+        restTemplate.setMessageConverters(list);
+
+        restTemplate.put("http://dream-teams-service/dreamTeams/" + id, dreamTeam, DreamTeam.class);
+
+        return ResponseEntity.ok().build();
+    }
 
      /*
     Dreamteam toevoegen

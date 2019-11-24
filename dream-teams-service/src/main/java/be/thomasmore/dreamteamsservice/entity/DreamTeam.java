@@ -14,5 +14,5 @@ public class DreamTeam {
     private String id;
     private String naam;
     private Integer userId;
-    private List<Integer> spelersId;
+    private List<String> spelersId;
 }

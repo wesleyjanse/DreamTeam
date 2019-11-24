@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Dreamteam } from '../models/dreamteam.model';
 import { Speler } from '../models/speler.model';
+import { DreamteamMetSpelers } from '../models/dreamteamMetSpelers.model';
 
 @Injectable()
 export class DreamteamService {
@@ -21,7 +22,19 @@ export class DreamteamService {
   }
 
   getFavorieteSpelersByUserId(id: number): Observable<Speler[]> {
-    return this._httpClient.get<Speler[]>("http://localhost:8762/edge/listings/allFavorieteSpelersByUserID/" + id, {
+    return this._httpClient.get<Speler[]>("http://localhost:8762/edge/listings/getAllFavorieteSpelersById/" + id, {
+      headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
+      });
+  }
+
+  updateDreamteam(id: string, dreamteam: Dreamteam){
+    return this._httpClient.put<Dreamteam>("http://localhost:8762/edge/listings/updateDreamteam/" + id, dreamteam, {
+      headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
+      });
+  }
+
+  getDreamTeamWithSpelers(id: number): Observable<DreamteamMetSpelers> {
+    return this._httpClient.get<DreamteamMetSpelers>("http://localhost:8762/edge/listings/getDreamteamWithPlayers/" + id, {
       headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
       });
   }

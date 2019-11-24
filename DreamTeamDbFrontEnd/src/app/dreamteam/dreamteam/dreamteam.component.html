@@ -42,17 +42,20 @@
 <div #test *ngIf="hasDreamteam">
   <div class="row">
     <div class="col-md-12">
-      <mat-toolbar color="secundary">
+      <mat-toolbar color="transparent">
         <mat-toolbar-row>
-          <span>{{ dreamteam.naam }}</span>
-          <span class="spacer"></span>
-          <button (click)="clickEdit()" mat-stroked-button>
-            <mat-icon class="icon" aria-hidden="false" aria-label="Example heart icon">edit</mat-icon>
-          </button>
-          <button mat-stroked-button (click)="clickDelete()">
-            <mat-icon class="icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
-          </button>
+          <h1 style="text-align: center; width: 100%; font-size: 40px; font-weight: 100;">{{ dreamteam.naam }}</h1>
         </mat-toolbar-row>
+        <mat-toolbar-row>
+          <span  style="text-align: center; width: 100%;">
+              <button color="primary" (click)="clickEdit()" mat-stroked-button>
+                  <mat-icon class="icon" aria-hidden="false" aria-label="Example heart icon">edit</mat-icon>
+                </button> &nbsp;
+                <button color="primary" mat-stroked-button (click)="clickDelete()">
+                  <mat-icon class="icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+                </button>
+          </span>
+          </mat-toolbar-row>
       </mat-toolbar>
     </div>
   </div>
@@ -63,9 +66,9 @@
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
+            <img mat-card-image [src]="spelers[0].afbeelding" alt="Player">
             <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <mat-card-title>{{ spelers[0].naam }}</mat-card-title>
               <mat-card-subtitle>Doelman</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
@@ -76,36 +79,36 @@
       <div class="row">
         <div class="col-md-3">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[1].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[1].naam }}</mat-card-title>
               <mat-card-subtitle>Verdediger</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
         </div>
         <div class="col-md-3">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[2].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[2].naam }}</mat-card-title>
               <mat-card-subtitle>Verdediger</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
         </div>
         <div class="col-md-3">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[3].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[3].naam }}</mat-card-title>
               <mat-card-subtitle>Verdediger</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
         </div>
         <div class="col-md-3">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[4].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[4].naam }}</mat-card-title>
               <mat-card-subtitle>Verdediger</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
@@ -116,27 +119,27 @@
       <div class="row">
         <div class="col-md-4">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[5].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[5].naam }}</mat-card-title>
               <mat-card-subtitle>Middenvelder</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
         </div>
         <div class="col-md-4">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[6].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[6].naam }}</mat-card-title>
               <mat-card-subtitle>Middenvelder</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
         </div>
         <div class="col-md-4">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[7].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[7].naam }}</mat-card-title>
               <mat-card-subtitle>Middenvelder</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
@@ -147,27 +150,27 @@
       <div class="row">
         <div class="col-md-4">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[8].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[8].naam }}</mat-card-title>
               <mat-card-subtitle>Aanvaller</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
         </div>
         <div class="col-md-4">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[9].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[9].naam }}</mat-card-title>
               <mat-card-subtitle>Aanvaller</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
         </div>
         <div class="col-md-4">
           <mat-card class="card mt-5 pt-5">
-            <img mat-card-image src="../../../assets/defaultPlayer.png" alt="Player">
-            <mat-card-header>
-              <mat-card-title>Niemand geselecteerd</mat-card-title>
+              <img mat-card-image [src]="spelers[10].afbeelding" alt="Player">
+              <mat-card-header>
+                <mat-card-title>{{ spelers[10].naam }}</mat-card-title>
               <mat-card-subtitle>Aanvaller</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
