@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import be.thomasmore.edgeservice.models.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.swagger.annotations.*;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/listings")
+@Api(value="Dreamteam CRUD systeem", description="Alle operaties die te maken hebben met het maken van een dreamteam.")
 public class ListingController {
 
     @Autowired
@@ -33,13 +35,13 @@ public class ListingController {
         this.jwtConfig = jwtConfig;
     }
 
-
       /*
         Delete dreamteam
      */
-
+    @ApiOperation(value="Verwijder het dreamteam verbonden met het opgegeven Id")
     @DeleteMapping("/dreamTeam/{id}")
-    public ResponseEntity deleteDreamTeam(@PathVariable("id") String id){
+    public ResponseEntity deleteDreamTeam(@ApiParam(value = "Het id van het te verwijderen dreamteam", required = true)@PathVariable("id") String id){
+
         restTemplate.delete("http://dream-teams-service/dreamTeams/" + id);
         return ResponseEntity.ok().build();
     }
@@ -48,7 +50,13 @@ public class ListingController {
     /*
     * Get all dreamteams
     * */
-
+    @ApiOperation(value="Haal alle dreamteams op uit de database", response = List.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "De dreamteams werden succesvol opgehaald"),
+            @ApiResponse(code = 401, message = "U bent niet bevoegd om de bron te bekijken"),
+            @ApiResponse(code = 403, message = "Toegang tot de bron die u probeerde te bereiken is verboden"),
+            @ApiResponse(code = 404, message = "De bron die u probeerde te bereiken, is niet gevonden")
+    })
     @GetMapping("/allDreamTeams")
     public List<DreamTeam> getAllDreamTeams() {
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://dream-teams-service/dreamTeams", GenericResponseWrapper.class);
@@ -61,18 +69,32 @@ public class ListingController {
        /*
     Dreamteam opvragen via userId
      */
-
+       @ApiOperation(value="Haal het dreamteam op verbonden met het opgegeven Id", response = DreamTeam.class)
+       @ApiResponses(value = {
+               @ApiResponse(code = 200, message = "Het dreamteam werd succesvol opgehaald"),
+               @ApiResponse(code = 401, message = "U bent niet bevoegd om de bron te bekijken"),
+               @ApiResponse(code = 403, message = "Toegang tot de bron die u probeerde te bereiken is verboden"),
+               @ApiResponse(code = 404, message = "De bron die u probeerde te bereiken, is niet gevonden")
+       })
     @GetMapping("/dreamteams/{id}")
-    public DreamTeam getDreamteamByUserId(@PathVariable Integer id) {
+    public DreamTeam getDreamteamByUserId(@ApiParam(value = "Het id van het op te halen dreamteam", required = true)@PathVariable Integer id) {
+
         return restTemplate.getForObject("http://dream-teams-service/dreamTeams/search/findDreamTeamByUserId?userid=" + id, DreamTeam.class);
     }
 
         /*
     Dreamteam opvragen via userId met Spelers
      */
-
+        @ApiOperation(value="Haal het dreamteam op verbonden met het opgegeven userId en voeg de spelers er aan toe", response = List.class)
+        @ApiResponses(value = {
+                @ApiResponse(code = 200, message = "Het dreamteam met spelers werd succesvol opgehaald"),
+                @ApiResponse(code = 401, message = "U bent niet bevoegd om de bron te bekijken"),
+                @ApiResponse(code = 403, message = "Toegang tot de bron die u probeerde te bereiken is verboden"),
+                @ApiResponse(code = 404, message = "De bron die u probeerde te bereiken, is niet gevonden")
+        })
     @GetMapping("/getDreamteamWithPlayers/{id}")
-    public DreamteamMetSpelers getDreamteamWithPlayersByUserId(@PathVariable Integer id) {
+    public DreamteamMetSpelers getDreamteamWithPlayersByUserId(@ApiParam(value = "Het userId waaraan het dreamteam verbonden is", required = true)@PathVariable Integer id) {
+
         DreamTeam dreamTeam = restTemplate.getForObject("http://dream-teams-service/dreamTeams/search/findDreamTeamByUserId?userid=" + id, DreamTeam.class);
         List<FavorieteSpeler> spelers = new ArrayList<>();
 
@@ -84,16 +106,17 @@ public class ListingController {
                 spelers.add(new FavorieteSpeler(null, "Niemand geselecteerd", dreamTeam.getUserId(), "",  "../../../assets/defaultPlayer.png"));
             }
         }
-
         return new DreamteamMetSpelers(dreamTeam, spelers);
     }
 
     /*
     Dreamteam wijzigen
      */
-
+    @ApiOperation(value="Het dreamteam met id=id aanpassen met de aanpassingen in het meegegeven dreamteam object")
     @PutMapping("/updateDreamteam/{id}")
-    public ResponseEntity<String> updateDreamteam(@PathVariable("id") String id, @RequestBody DreamTeam dreamTeam){
+    public ResponseEntity<String> updateDreamteam(
+            @ApiParam(value = "Het dreamteamId om het dreamteam te updaten", required = true)@PathVariable("id") String id,
+            @ApiParam(value = "Het update dreamteam object", required = true) @RequestBody DreamTeam dreamTeam){
 
         List<HttpMessageConverter<?>> list = new ArrayList<>();
         list.add(new MappingJackson2HttpMessageConverter());
@@ -107,9 +130,9 @@ public class ListingController {
      /*
     Dreamteam toevoegen
      */
-
+     @ApiOperation(value="Een dreamteam toevoegen")
     @PostMapping("/dreamteams")
-    public ResponseEntity<String> postDreamteam(@RequestBody DreamTeam dreamTeam){
+    public ResponseEntity<String> postDreamteam(@ApiParam(value = "Het nieuwe dreamteam object om in de db op te slaan", required = true)@RequestBody DreamTeam dreamTeam){
 
         List<HttpMessageConverter<?>> list = new ArrayList<>();
         list.add(new MappingJackson2HttpMessageConverter());
@@ -126,9 +149,16 @@ public class ListingController {
        /*
     favorietespelers opvragen via userId
      */
-
+       @ApiOperation(value="Haal de favoriete spelers op verbonden met het opgegeven userId", response = List.class)
+       @ApiResponses(value = {
+               @ApiResponse(code = 200, message = "De favoriete spelers werden succesvol opgehaald"),
+               @ApiResponse(code = 401, message = "U bent niet bevoegd om de bron te bekijken"),
+               @ApiResponse(code = 403, message = "Toegang tot de bron die u probeerde te bereiken is verboden"),
+               @ApiResponse(code = 404, message = "De bron die u probeerde te bereiken, is niet gevonden")
+       })
     @GetMapping("/getAllFavorieteSpelersById/{userId}")
-    public List<FavorieteSpeler> getAllFavorieteSpelersById(@PathVariable("userId") Integer userId) {
+    public List<FavorieteSpeler> getAllFavorieteSpelersById(@ApiParam(value = "Het userId waaraan de favoriete spelers verbonden zijn", required = true)@PathVariable("userId") Integer userId) {
+
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://favoriete-speler-service/favorieteSpelers/search/findFavorieteSpelersByUserId?userId=" + userId, GenericResponseWrapper.class);
         List<FavorieteSpeler> favorieteSpelers = objectMapper.convertValue(wrapper.get_embedded().get("favorieteSpelers"), new TypeReference<List<FavorieteSpeler>>() { });
         return favorieteSpelers;
@@ -137,9 +167,16 @@ public class ListingController {
     /*
     Lijst opvragen met alle favoriete spelers
      */
-
+    @ApiOperation(value="Haal alle favoriete spelers op uit de database", response = List.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "De favoriete spelers werden succesvol opgehaald"),
+            @ApiResponse(code = 401, message = "U bent niet bevoegd om de bron te bekijken"),
+            @ApiResponse(code = 403, message = "Toegang tot de bron die u probeerde te bereiken is verboden"),
+            @ApiResponse(code = 404, message = "De bron die u probeerde te bereiken, is niet gevonden")
+    })
     @GetMapping("/allFavorieteSpelers")
     public List<FavorieteSpeler> getAllFavorieteSpelers() {
+
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://favoriete-speler-service/favorieteSpelers", GenericResponseWrapper.class);
 
         List<FavorieteSpeler> favorieteSpelers = objectMapper.convertValue(wrapper.get_embedded().get("favorieteSpelers"), new TypeReference<List<FavorieteSpeler>>() { });
@@ -150,9 +187,16 @@ public class ListingController {
     /*
     Favoriete speler opvragen via id
      */
-
+    @ApiOperation(value="Haal de favoriete speler op met het opgegeven Id", response = FavorieteSpeler.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "De favoriete speler werd succesvol opgehaald"),
+            @ApiResponse(code = 401, message = "U bent niet bevoegd om de bron te bekijken"),
+            @ApiResponse(code = 403, message = "Toegang tot de bron die u probeerde te bereiken is verboden"),
+            @ApiResponse(code = 404, message = "De bron die u probeerde te bereiken, is niet gevonden")
+    })
     @GetMapping("/favorieteSpeler/{id}")
-    public FavorieteSpeler getFavorieteSpelerById(@PathVariable String id) {
+    public FavorieteSpeler getFavorieteSpelerById(@ApiParam(value = "Het id van de op te vragen favoriete speler", required = true)@PathVariable String id) {
+
         FavorieteSpeler favorieteSpeler = restTemplate.getForObject("http://favoriete-speler-service/favorieteSpelers/search/findFavorieteSpelerById?id=" + id, FavorieteSpeler.class);
 
         return favorieteSpeler;
@@ -161,9 +205,9 @@ public class ListingController {
     /*
     Favoriete speler toevoegen
      */
-
+    @ApiOperation(value="Een favoriete speler toevoegen")
     @PostMapping("/favorieteSpelers")
-    public ResponseEntity<String> postFavorieteSpelerById(@RequestBody FavorieteSpeler favorieteSpeler){
+    public ResponseEntity<String> postFavorieteSpelerById(@ApiParam(value = "Het nieuwe favoriete speler object om in de db op te slaan", required = true)@RequestBody FavorieteSpeler favorieteSpeler){
 
         List<HttpMessageConverter<?>> list = new ArrayList<>();
         list.add(new MappingJackson2HttpMessageConverter());
@@ -179,9 +223,11 @@ public class ListingController {
     /*
     Favoriete speler wijzigen
      */
-
+    @ApiOperation(value="De favoriete speler met id=id, wijzigen met het aangepaste favorieteSpeler object")
     @PutMapping("/favorieteSpeler/{id}")
-    public ResponseEntity<String> putFavorieteSpeler(@PathVariable("id") String id, @RequestBody FavorieteSpeler favorieteSpeler){
+    public ResponseEntity<String> putFavorieteSpeler(
+            @ApiParam(value = "Het favorieteSpelerId om de favoriete speler te updaten", required = true)@PathVariable("id") String id,
+            @ApiParam(value = "Het update favorieteSpeler object", required = true)@RequestBody FavorieteSpeler favorieteSpeler){
 
         List<HttpMessageConverter<?>> list = new ArrayList<>();
         list.add(new MappingJackson2HttpMessageConverter());
@@ -195,41 +241,43 @@ public class ListingController {
     /*
     Favoriete speler verwijderen
      */
-
+    @ApiOperation(value="Verwijder de favorieteSpeler verbonden met het opgegeven Id")
     @DeleteMapping("/favorieteSpeler/{id}")
-    public ResponseEntity deleteFavorieteSpeler(@PathVariable("id") String id){
+    public ResponseEntity deleteFavorieteSpeler(@ApiParam(value = "Het id van de te verwijderen favorieteSpeler", required = true)@PathVariable("id") String id){
 
         restTemplate.delete("http://favoriete-speler-service/favorieteSpelers/" + id);
 
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<String> getUsername(@RequestHeader("Authorization") String token) {
-        token = token.substring(7);
-        Claims claims = Jwts.parser()
-                .setSigningKey(jwtConfig.getSecret().getBytes())
-                .parseClaimsJws(token)
-                .getBody();
 
-        String username = claims.getSubject();
-
-        return new ResponseEntity<String>("Hello " + username, HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/admin")
-    @ResponseBody
-    public ResponseEntity<String> getAdminUsername(@RequestHeader("Authorization") String token) {
-        token = token.substring(7);
-        Claims claims = Jwts.parser()
-                .setSigningKey(jwtConfig.getSecret().getBytes())
-                .parseClaimsJws(token)
-                .getBody();
-
-        String username = claims.getSubject();
-        String id = claims.getId();
-
-        return new ResponseEntity<String>("Hello administrator with name" + username + "  " + id, HttpStatus.OK);
-    }
+   /* Authenticatie probeer methodes, niet nuttig in de eindapplicatie */
+//    @RequestMapping(value = "/username", method = RequestMethod.GET)
+//    @ResponseBody
+//    public ResponseEntity<String> getUsername(@RequestHeader("Authorization") String token) {
+//        token = token.substring(7);
+//        Claims claims = Jwts.parser()
+//                .setSigningKey(jwtConfig.getSecret().getBytes())
+//                .parseClaimsJws(token)
+//                .getBody();
+//
+//        String username = claims.getSubject();
+//
+//        return new ResponseEntity<String>("Hello " + username, HttpStatus.OK);
+//    }
+//
+//    @GetMapping(value = "/admin")
+//    @ResponseBody
+//    public ResponseEntity<String> getAdminUsername(@RequestHeader("Authorization") String token) {
+//        token = token.substring(7);
+//        Claims claims = Jwts.parser()
+//                .setSigningKey(jwtConfig.getSecret().getBytes())
+//                .parseClaimsJws(token)
+//                .getBody();
+//
+//        String username = claims.getSubject();
+//        String id = claims.getId();
+//
+//        return new ResponseEntity<String>("Hello administrator with name" + username + "  " + id, HttpStatus.OK);
+//    }
 }
