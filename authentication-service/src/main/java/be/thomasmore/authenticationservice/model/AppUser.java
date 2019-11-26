@@ -1,10 +1,13 @@
 package be.thomasmore.authenticationservice.model;
 
 import lombok.Data;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 public class AppUser {
+    @Id
+    ObjectId databaseId;
     private Integer id;
     private String username, password;
     private String role;

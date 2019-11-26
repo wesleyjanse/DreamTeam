@@ -7,7 +7,7 @@ import { Member } from 'src/app/models/member.model';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Speler } from 'src/app/models/speler.model';
-
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-dreamteam',
   templateUrl: './dreamteam.component.html',
@@ -19,22 +19,32 @@ export class DreamteamComponent implements OnInit {
   hasDreamteam: boolean = false;
   dreamteam: Dreamteam;
   spelers: Speler[];
-
-  constructor(private fb: FormBuilder, private dts: DreamteamService, private _authenticateService: AuthenticateService, private router: Router) {
+  andereGebruiker: boolean = false;
+  constructor(private fb: FormBuilder, private dts: DreamteamService, private _authenticateService: AuthenticateService, private router: Router, private route: ActivatedRoute) {
     
   }
 
   ngOnInit() {
+    console.log();
     this._authenticateService.isLoggedin.subscribe(e => {
       if (localStorage.getItem('member') != null) {
         this.memberName = localStorage.getItem('member');
         this.memberId = Number(localStorage.getItem('id'));
-        
-        this.dts.getDreamTeamWithSpelers(this.memberId).subscribe((res) => {
+        let searchId;
+        if (this.route.snapshot.queryParamMap.get('id') != null) {
+          searchId = this.route.snapshot.queryParamMap.get('id')
+          if (searchId != this.memberId) {
+            this.andereGebruiker = true;
+          }
+        } else{
+          searchId = this.memberId;
+        }
+
+        this.dts.getDreamTeamWithSpelers(searchId).subscribe((res) => {
           if (res != null) {
+            this.hasDreamteam = true;
             this.dreamteam = res.dreamTeam;
             this.spelers = res.spelers;
-            this.hasDreamteam = true;
           }
         },
         error => {
@@ -72,6 +82,11 @@ export class DreamteamComponent implements OnInit {
 
   clickEdit() {
     this.router.navigate(['dreamteamedit']);
+  }
+
+
+  zoekTeams(){
+    this.router.navigate(['zoekdreamteams']);
   }
 
   clickDelete() {

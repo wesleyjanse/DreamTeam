@@ -15,11 +15,13 @@ import { TestComponent } from './test/test.component';
 import { DreamteameditComponent } from './dreamteam/dreamteamedit/dreamteamedit.component';
 import { HomeComponent } from './home/home.component';
 import { HomeModule } from './home/home.module';
+import { ZoekDreamteamComponent } from './dreamteam/zoek-dreamteam/zoek-dreamteam.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'dreamteam', component: DreamteamComponent },
   { path: 'dreamteamedit', component: DreamteameditComponent },
+  { path: 'zoekdreamteams', component: ZoekDreamteamComponent },
   { path: 'home', component: HomeComponent },
   ];
 @NgModule({

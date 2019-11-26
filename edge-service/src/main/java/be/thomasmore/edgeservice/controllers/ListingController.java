@@ -34,8 +34,45 @@ public class ListingController {
     public ListingController(JwtConfig jwtConfig) {
         this.jwtConfig = jwtConfig;
     }
+    
+    @GetMapping("/appUsers/{id}")
+    public AppUser getAppUserById(@PathVariable Integer id) {
+        return restTemplate.getForObject("http://user-service/appUsers/search/findAppUserById?id=" + id, AppUser.class);
+    }
 
-      /*
+    /*
+     * Get all dreamteams
+     * */
+
+    @GetMapping("/allDreamTeamsWithUsers")
+    public List<DreamteamsMetSpelersMetUsers> getAllDreamTeamsWithPlayersWithUsers() {
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://dream-teams-service/dreamTeams", GenericResponseWrapper.class);
+
+        List<DreamTeam> dreamTeams = objectMapper.convertValue(wrapper.get_embedded().get("dreamTeams"), new TypeReference<List<DreamTeam>>() { });
+
+        List<DreamteamsMetSpelersMetUsers> returnList = new ArrayList<>();
+
+        for (DreamTeam team: dreamTeams)
+        {
+            List<FavorieteSpeler> spelers = new ArrayList<>();
+            for (String spelerId: team.getSpelersId()){
+                if (spelerId != ""){
+                    FavorieteSpeler speler = this.getFavorieteSpelerById(spelerId);
+                    spelers.add(speler);
+                }else{
+                    spelers.add(new FavorieteSpeler(null, "Niemand geselecteerd", team.getUserId(), "",  "../../../assets/defaultPlayer.png"));
+                }
+            }
+
+            AppUser user = this.getAppUserById(team.getUserId());
+
+            returnList.add(new DreamteamsMetSpelersMetUsers(team, spelers, user));
+        }
+
+        return returnList;
+    }
+
+     /*
         Delete dreamteam
      */
     @ApiOperation(value="Verwijder het dreamteam verbonden met het opgegeven Id")

@@ -1,9 +1,15 @@
 package be.thomasmore.edgeservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 @ApiModel(description="Alle details over de user.")
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AppUser {
     @ApiModelProperty(notes="Het id van de user, niet gegenereerd door de DB")
     private Integer id;

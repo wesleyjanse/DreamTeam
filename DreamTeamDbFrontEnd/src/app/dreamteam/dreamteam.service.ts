@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Dreamteam } from '../models/dreamteam.model';
 import { Speler } from '../models/speler.model';
 import { DreamteamMetSpelers } from '../models/dreamteamMetSpelers.model';
+import { DreamteamMetSpelersEnUsers } from '../models/dreamteamMetSpelersEnUsers.model';
 
 @Injectable()
 export class DreamteamService {
@@ -35,6 +36,12 @@ export class DreamteamService {
 
   getDreamTeamWithSpelers(id: number): Observable<DreamteamMetSpelers> {
     return this._httpClient.get<DreamteamMetSpelers>("http://localhost:8762/edge/listings/getDreamteamWithPlayers/" + id, {
+      headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
+      });
+  }
+
+  getDreamTeamWithSpelersEnUsers(): Observable<DreamteamMetSpelersEnUsers> {
+    return this._httpClient.get<DreamteamMetSpelersEnUsers>("http://localhost:8762/edge/listings/allDreamTeamsWithUsers", {
       headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
       });
   }
