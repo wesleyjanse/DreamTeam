@@ -1,9 +1,15 @@
 package be.thomasmore.edgeservice.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.List;
 
+@ApiModel(description="Dreamteam helper model om de spelers op te vragen")
 public class DreamteamMetSpelers {
+    @ApiModelProperty(notes="Het dreateam object, waarvoor we de spelers willen opvragen")
     private DreamTeam dreamTeam;
+    @ApiModelProperty(notes="De lijst van spelers die bij het dreamteam horen")
     private List<FavorieteSpeler> spelers;
 
     public DreamteamMetSpelers(DreamTeam dreamTeam, List<FavorieteSpeler> spelers) {

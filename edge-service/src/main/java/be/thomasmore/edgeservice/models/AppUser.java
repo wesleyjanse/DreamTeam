@@ -1,8 +1,18 @@
 package be.thomasmore.edgeservice.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description="Alle details over de user.")
 public class AppUser {
+    @ApiModelProperty(notes="Het id van de user, niet gegenereerd door de DB")
     private Integer id;
-    private String username, password, role;
+    @ApiModelProperty(notes="De naam van de user")
+    private String username;
+    @ApiModelProperty(notes="Het wachtwoord van de user")
+    private String password;
+    @ApiModelProperty(notes="De rol van de user")
+    private String  role;
 
     public AppUser() {
     }
