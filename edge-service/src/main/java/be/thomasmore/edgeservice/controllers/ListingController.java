@@ -36,14 +36,27 @@ public class ListingController {
     }
     
     @GetMapping("/appUsers/{id}")
-    public AppUser getAppUserById(@PathVariable Integer id) {
+    @ApiOperation(value="Haal de user op waar het id=UserId")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "De user werd succesvol opgehaald"),
+            @ApiResponse(code = 401, message = "U bent niet bevoegd om de bron te bekijken"),
+            @ApiResponse(code = 403, message = "Toegang tot de bron die u probeerde te bereiken is verboden"),
+            @ApiResponse(code = 404, message = "De bron die u probeerde te bereiken, is niet gevonden")
+    })
+    public AppUser getAppUserById(@ApiParam(value = "Het id van de op te halen user", required = true)@PathVariable Integer id) {
         return restTemplate.getForObject("http://user-service/appUsers/search/findAppUserById?id=" + id, AppUser.class);
     }
 
     /*
      * Get all dreamteams
      * */
-
+    @ApiOperation(value="Haal alle dreamteams op van de users met spelers")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "De dreamteams werden succesvol opgehaald"),
+            @ApiResponse(code = 401, message = "U bent niet bevoegd om de bron te bekijken"),
+            @ApiResponse(code = 403, message = "Toegang tot de bron die u probeerde te bereiken is verboden"),
+            @ApiResponse(code = 404, message = "De bron die u probeerde te bereiken, is niet gevonden")
+    })
     @GetMapping("/allDreamTeamsWithUsers")
     public List<DreamteamsMetSpelersMetUsers> getAllDreamTeamsWithPlayersWithUsers() {
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://dream-teams-service/dreamTeams", GenericResponseWrapper.class);
