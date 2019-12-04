@@ -1,11 +1,14 @@
 .logo{
     display:block;
     margin:auto;
-    background-color: black;
+    filter: drop-shadow(5px 5px 5px #222);
 }
 .text {
     text-align: center;
 }
 .col {
     margin: 10px;
+}
+.mat-card:hover{
+    cursor: pointer;
 }

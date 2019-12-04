@@ -1,6 +1,6 @@
 <div class="container">
-    <h1>{{team}}</h1>
-    <div class="row mt-5 ">
+    <h1 class="mt-5 text">{{team}}</h1>
+    <div class="row mt-5">
         <mat-card *ngFor="let s of spelers" class="col">
             <div ng-if="favorieteSpelersNamen.indexOf(s.strPlayer)">
                 <img height="250" width="250" class="logo" [src]="s.strCutout ? s.strCutout : s.strThumb"
