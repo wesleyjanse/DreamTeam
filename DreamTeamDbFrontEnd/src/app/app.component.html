@@ -3,8 +3,9 @@
     <a style="text-decoration: none; color: white;" [routerLink]="['home']" routerLinkActive="router-link-active" >{{title}}</a>
     <span class="spacer"></span>
     <button [routerLink]="['dreamteam']" mat-stroked-button class="m-1">Dreamteam</button>
-    <button mat-stroked-button class="m-1">Spelers</button>
-    <button routerLinkActive="router-link-active"  mat-stroked-button class="m-1">Favorieten</button>
+    <button [routerLink]="['leagues']" mat-stroked-button class="m-1">Spelers Zoeken</button>
+    <button [routerLink]="['favorieteSpelers']" mat-stroked-button class="m-1">Favoriete spelers</button>
+    <button mat-stroked-button class="m-1">Favoriete teams</button>
     <button mat-flat-button class="m-1" (click)="logOut()"> <mat-icon>
         exit_to_app
     </mat-icon></button>

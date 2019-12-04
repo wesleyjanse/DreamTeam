@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   }
 
   zoekSpelerClick(){
-
+    this.router.navigate(['leagues'])
   }
 
   dreamteamClick(){
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   }
 
   favoSpelerClick(){
-
+    this.router.navigate(['favorieteSpelers'])
   }
 
   favoTeamClick(){

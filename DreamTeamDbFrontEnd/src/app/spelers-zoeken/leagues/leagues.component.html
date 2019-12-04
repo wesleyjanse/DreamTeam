@@ -1,0 +1,12 @@
+<div class="container">
+    <h1>Kies een league!</h1>
+    <div class="row mt-5 ">
+        <mat-card *ngFor="let l of leaguesNotNull" (click)="leagueClick(l)" class="col">
+            <div>
+                <img height="100" width="200" class="logo" src="{{l.strLogo}}"
+                    onError="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png';" />
+                <p class="text">{{l.strLeague}}</p>
+            </div>
+        </mat-card>
+    </div>
+</div>

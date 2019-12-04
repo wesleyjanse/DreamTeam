@@ -16,6 +16,12 @@ import { DreamteameditComponent } from './dreamteam/dreamteamedit/dreamteamedit.
 import { HomeComponent } from './home/home.component';
 import { HomeModule } from './home/home.module';
 import { ZoekDreamteamComponent } from './dreamteam/zoek-dreamteam/zoek-dreamteam.component';
+import { LeaguesComponent } from './spelers-zoeken/leagues/leagues.component';
+import { TeamsComponent } from './spelers-zoeken/teams/teams.component';
+import { SpelersComponent } from './spelers-zoeken/spelers/spelers.component';
+import { SpelersZoekenModule } from './spelers-zoeken/spelers-zoeken.module';
+import { FavorieteSpelersComponent } from './favoriete-spelers/favoriete-spelers/favoriete-spelers.component';
+import { FavorieteSpelersModule } from './favoriete-spelers/favoriete-spelers.module';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -23,6 +29,10 @@ const appRoutes: Routes = [
   { path: 'dreamteamedit', component: DreamteameditComponent },
   { path: 'zoekdreamteams', component: ZoekDreamteamComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'leagues', component: LeaguesComponent },
+  { path: 'teams', component: TeamsComponent },
+  { path: 'spelers', component: SpelersComponent },
+  { path: 'favorieteSpelers', component: FavorieteSpelersComponent },
   ];
 @NgModule({
   declarations: [
@@ -38,6 +48,8 @@ const appRoutes: Routes = [
     FormSharedModule,
     DreamteamModule,
     HomeModule,
+    SpelersZoekenModule,
+    FavorieteSpelersModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
