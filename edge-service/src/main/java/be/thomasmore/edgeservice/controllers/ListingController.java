@@ -34,7 +34,7 @@ public class ListingController {
     public ListingController(JwtConfig jwtConfig) {
         this.jwtConfig = jwtConfig;
     }
-    
+
     @GetMapping("/appUsers/{id}")
     @ApiOperation(value="Haal de user op waar het id=UserId")
     @ApiResponses(value = {
@@ -62,7 +62,6 @@ public class ListingController {
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://dream-teams-service/dreamTeams", GenericResponseWrapper.class);
 
         List<DreamTeam> dreamTeams = objectMapper.convertValue(wrapper.get_embedded().get("dreamTeams"), new TypeReference<List<DreamTeam>>() { });
-
         List<DreamteamsMetSpelersMetUsers> returnList = new ArrayList<>();
 
         for (DreamTeam team: dreamTeams)
@@ -244,11 +243,12 @@ public class ListingController {
             @ApiResponse(code = 403, message = "Toegang tot de bron die u probeerde te bereiken is verboden"),
             @ApiResponse(code = 404, message = "De bron die u probeerde te bereiken, is niet gevonden")
     })
+
     @GetMapping("/favorieteSpeler/{id}")
     public FavorieteSpeler getFavorieteSpelerById(@ApiParam(value = "Het id van de op te vragen favoriete speler", required = true)@PathVariable String id) {
-
-        FavorieteSpeler favorieteSpeler = restTemplate.getForObject("http://favoriete-speler-service/favorieteSpelers/search/findFavorieteSpelerById?id=" + id, FavorieteSpeler.class);
-
+        FavorieteSpeler favorieteSpeler = restTemplate.getForObject
+                ("http://favoriete-speler-service/favorieteSpelers/search/findFavorieteSpelerById?id=" +
+                        id, FavorieteSpeler.class);
         return favorieteSpeler;
     }
 
