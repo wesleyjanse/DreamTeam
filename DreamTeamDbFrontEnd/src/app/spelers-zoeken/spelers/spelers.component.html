@@ -5,7 +5,7 @@
             <div ng-if="favorieteSpelersNamen.indexOf(s.strPlayer)">
                 <img height="250" width="250" class="logo" [src]="s.strCutout ? s.strCutout : s.strThumb"
                     onError="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png';" />
-                <p class="text">{{s.strPlayer}}</p><p>Positie: {{s.strPosition}}</p><br/>
+                <p class="text">{{s.strPlayer}}</p><p class="text">Positie: {{s.strPosition}}</p><br/>
                 <button mat-raised-button color="primary" class="logo" type="button" (click)="addFavorite(s)">Toevoegen aan favorieten</button>
             </div>
         </mat-card>
