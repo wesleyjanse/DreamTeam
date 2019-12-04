@@ -14,8 +14,8 @@ export class FavorieteSpelersService {
     });
   }
 
-  deleteFavorieteSpeler(id: string) {
-    return this._httpClient.delete<Speler>("http://localhost:8762/edge/listings/favorieteSpeler/" + id, {
+  deleteFavorieteSpeler(id: string, userid: Number) {
+    return this._httpClient.delete<Speler>("http://localhost:8762/edge/listings/favorieteSpeler/" + id + "/" + userid, {
       headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
       });
   }

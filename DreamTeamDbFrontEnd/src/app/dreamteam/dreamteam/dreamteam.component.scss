@@ -35,10 +35,12 @@
     margin: 0;
   }
   .card {
+    min-width: 200px;
     max-width: 200px;
   }
 
   img.mat-card-image {
+    min-height: 150px;
     max-height: 150px;
   }
 

@@ -13,7 +13,8 @@ export class FavorieteSpelersComponent implements OnInit {
   memberId: number;
   favorieteSpelers: Speler[];
 
-  constructor(private _authenticateService: AuthenticateService, private _favorieteSpelersService: FavorieteSpelersService) { }
+  constructor(private _authenticateService: AuthenticateService, private _favorieteSpelersService: FavorieteSpelersService) {
+   }
 
   ngOnInit() {
     this._authenticateService.isLoggedin.subscribe(e => {
@@ -28,7 +29,8 @@ export class FavorieteSpelersComponent implements OnInit {
   }
 
   deleteFavSpeler(f: Speler){
-    this._favorieteSpelersService.deleteFavorieteSpeler(f.id).subscribe(() => {
+    console.log(this.memberId);
+    this._favorieteSpelersService.deleteFavorieteSpeler(f.id, this.memberId).subscribe(() => {
       this.ngOnInit()
     })
   }
