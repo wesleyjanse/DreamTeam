@@ -247,8 +247,7 @@ public class ListingController {
     @GetMapping("/favorieteSpeler/{id}")
     public FavorieteSpeler getFavorieteSpelerById(@ApiParam(value = "Het id van de op te vragen favoriete speler", required = true)@PathVariable String id) {
         FavorieteSpeler favorieteSpeler = restTemplate.getForObject
-                ("http://favoriete-speler-service/favorieteSpelers/search/findFavorieteSpelerById?id=" +
-                        id, FavorieteSpeler.class);
+                ("http://favoriete-speler-service/favorieteSpelers/search/findFavorieteSpelerById?id=" + id, FavorieteSpeler.class);
         return favorieteSpeler;
     }
 
@@ -292,9 +291,23 @@ public class ListingController {
     Favoriete speler verwijderen
      */
     @ApiOperation(value="Verwijder de favorieteSpeler verbonden met het opgegeven Id")
-    @DeleteMapping("/favorieteSpeler/{id}")
-    public ResponseEntity deleteFavorieteSpeler(@ApiParam(value = "Het id van de te verwijderen favorieteSpeler", required = true)@PathVariable("id") String id){
+    @DeleteMapping("/favorieteSpeler/{id}/{userId}")
+    public ResponseEntity deleteFavorieteSpeler(@ApiParam(value = "Het id van de te verwijderen favorieteSpeler", required = true)@PathVariable("id") String id, @PathVariable("userId") Integer userId){
 
+        DreamTeam team = this.getDreamteamByUserId(userId);
+
+        List<String> spelers = team.getSpelersId();
+        List<String> keepSpelers = new ArrayList<>();
+        for (String spelerId: spelers) {
+            if (spelerId.equals(id)){
+                keepSpelers.add("");
+            } else{
+                keepSpelers.add(spelerId);
+            }
+        }
+
+
+        this.updateDreamteam(team.getId(), new DreamTeam(team.getId(), team.getNaam(), team.getUserId(), keepSpelers));
         restTemplate.delete("http://favoriete-speler-service/favorieteSpelers/" + id);
 
         return ResponseEntity.ok().build();
