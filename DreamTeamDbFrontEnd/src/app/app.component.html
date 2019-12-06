@@ -2,11 +2,11 @@
   <mat-toolbar-row>
     <a style="text-decoration: none; color: white;" [routerLink]="['home']" routerLinkActive="router-link-active" >{{title}}</a>
     <span class="spacer"></span>
-    <button [routerLink]="['dreamteam']" mat-stroked-button class="m-1">Dreamteam</button>
-    <button [routerLink]="['leagues']" mat-stroked-button class="m-1">Spelers Zoeken</button>
-    <button [routerLink]="['favorieteSpelers']" mat-stroked-button class="m-1">Favoriete spelers</button>
-    <button mat-stroked-button class="m-1">Favoriete teams</button>
-    <button mat-flat-button class="m-1" (click)="logOut()"> <mat-icon>
+    <button *ngIf="login" [routerLink]="['dreamteam']" mat-stroked-button class="m-1">Dreamteam</button>
+    <button *ngIf="login" [routerLink]="['leagues']" mat-stroked-button class="m-1">Spelers Zoeken</button>
+    <button *ngIf="login" [routerLink]="['favorieteSpelers']" mat-stroked-button class="m-1">Favoriete spelers</button>
+    <button *ngIf="login" mat-stroked-button class="m-1">Favoriete teams</button>
+    <button *ngIf="login" mat-flat-button class="m-1" (click)="logOut()"> <mat-icon>
         exit_to_app
     </mat-icon></button>
   </mat-toolbar-row>

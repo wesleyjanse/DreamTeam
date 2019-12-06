@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from 'src/app/security/authenticate.service';
 import { FavorieteSpelersService } from '../favoriete-spelers.service';
 import { Speler } from 'src/app/models/speler.model';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-favoriete-spelers',
@@ -13,7 +14,7 @@ export class FavorieteSpelersComponent implements OnInit {
   memberId: number;
   favorieteSpelers: Speler[];
 
-  constructor(private _authenticateService: AuthenticateService, private _favorieteSpelersService: FavorieteSpelersService) {
+  constructor(private _authenticateService: AuthenticateService, private _favorieteSpelersService: FavorieteSpelersService,private snackBar: MatSnackBar) {
    }
 
   ngOnInit() {
@@ -32,6 +33,9 @@ export class FavorieteSpelersComponent implements OnInit {
     console.log(this.memberId);
     this._favorieteSpelersService.deleteFavorieteSpeler(f.id, this.memberId).subscribe(() => {
       this.ngOnInit()
+      this.snackBar.open(f.naam + ' verwijderd uit je favorieten!', null, {
+        duration: 3000
+      });
     })
   }
 }

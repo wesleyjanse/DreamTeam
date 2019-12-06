@@ -42,10 +42,6 @@ export class SpelersComponent implements OnInit {
     });
   }
 
-  refresh(): void {
-    window.location.reload();
-  }
-
   addFavorite(s: FavorieteSpeler) {
     let afbeelding = "";
     this._authenticateService.isLoggedin.subscribe(e => {
@@ -59,7 +55,9 @@ export class SpelersComponent implements OnInit {
           }
           let speler = new Speler(s.strPlayer, this.memberId, s.strPosition, afbeelding, null);
           this._spelersZoekenService.addFavorieteSpeler(speler).subscribe();
-          this.refresh()
+          this.snackBar.open(s.strPlayer + ' toegevoegd aan je favorieten!', null, {
+            duration: 3000
+          });
         } else {
           console.log("speler al reeds in favorieten");
           this.snackBar.open('Speler is al favoriet!', 'OK');

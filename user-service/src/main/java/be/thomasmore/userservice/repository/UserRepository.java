@@ -9,3 +9,4 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface UserRepository extends MongoRepository<AppUser, String> {
     AppUser findAppUserById(@Param("id") Integer id);
 }
+

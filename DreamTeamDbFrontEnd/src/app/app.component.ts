@@ -13,14 +13,16 @@ export class AppComponent {
   team = undefined;
   login: boolean;
 
-  constructor(private dreamTeamDbService : DreamTeamDbService, private _authenticateService: AuthenticateService, private _router: Router){
-    this.dreamTeamDbService.find('Arsenal').subscribe(
-      res => {this.team = res;}
-    )
-    this._authenticateService.isLoggedin.subscribe(e=> {
-      this.login = !e.valueOf();
-      
-  })
+  constructor(private _authenticateService: AuthenticateService, private _router: Router){
+    this.login = this._authenticateService.checkLoggedIn();
+    console.log(this.login);
+
+  }
+
+  ngOnInit() {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    
   }
 
   logOut() {

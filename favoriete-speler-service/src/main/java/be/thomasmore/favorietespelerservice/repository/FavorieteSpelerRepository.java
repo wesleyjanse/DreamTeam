@@ -9,7 +9,6 @@ import java.util.List;
 
 @CrossOrigin
 public interface FavorieteSpelerRepository extends MongoRepository<FavorieteSpeler, String> {
-    //FavorieteSpeler findFavorieteSpelerByUserId(@Param("userid") Integer userid);
     List<FavorieteSpeler> findFavorieteSpelersByUserId(@Param("userId") Integer userId);
     FavorieteSpeler findFavorieteSpelerById(@Param("id") String id);
 }
